@@ -115,7 +115,7 @@ const Footer = () => {
               Cookie policy
             </a>
             <a href="#" className="transition-colors duration-300 hover:text-brand-950">
-              Terms &amp; Conditions
+              Terms & Conditions
             </a>
           </div>
           <a href="#" onClick={scrollToTop} className="group inline-flex items-center gap-1.5 font-semibold text-brand-950">

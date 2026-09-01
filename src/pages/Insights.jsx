@@ -71,7 +71,7 @@ const Insights = () => {
               className="mb-5 flex animate-[heroFadeUp_0.7s_ease_forwards] items-center gap-3 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
             >
               <span className="h-px w-10 bg-brand-mint" />
-              <span className="text-xs font-semibold tracking-[0.08em] text-white/60 uppercase">Research &amp; Commentary</span>
+              <span className="text-xs font-semibold tracking-[0.08em] text-white/60 uppercase">Research & Commentary</span>
             </div>
 
             <h1 className="font-serif-display text-[clamp(40px,6vw,76px)] leading-[0.98] font-medium text-white">
@@ -213,7 +213,7 @@ const Insights = () => {
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Latest</span>
-              <h2 className="font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">News &amp; Insights</h2>
+              <h2 className="font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">News & Insights</h2>
             </div>
             <p className="max-w-[320px] text-[13.5px] leading-relaxed text-gray-500">{NEWS_ITEMS.length} items.</p>
           </div>

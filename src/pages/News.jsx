@@ -116,7 +116,7 @@ const News = () => {
             <span className="inline-block shrink-0 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold tracking-[0.04em] text-white/70">
               News
             </span>
-            <h1 className="font-serif-display text-2xl leading-[1.1] font-medium text-white sm:text-3xl">Insights &amp; Announcements</h1>
+            <h1 className="font-serif-display text-2xl leading-[1.1] font-medium text-white sm:text-3xl">Insights & Announcements</h1>
           </div>
           <p className="hidden max-w-[320px] text-right text-[13.5px] leading-relaxed text-white/55 md:block">
             Portfolio milestones, market perspective, and the occasional conversation worth sharing.
@@ -212,7 +212,7 @@ const News = () => {
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
             />
             <div className="relative z-[2] bg-gradient-to-b from-brand-mint/40 to-transparent px-5 pt-4 pb-3">
-              <p className="mb-1.5 text-[0.75rem] font-semibold text-brand-950/75">Category . Market &nbsp;&nbsp; Hot . 12 Feb</p>
+              <p className="mb-1.5 text-[0.75rem] font-semibold text-brand-950/75">Category . Market  Hot . 12 Feb</p>
               <h2 className="font-serif-display text-[1.1rem] leading-[1.15] font-medium text-brand-950 md:text-[1.2rem]">
                 Why Late-Stage Valuations Are Resetting
               </h2>

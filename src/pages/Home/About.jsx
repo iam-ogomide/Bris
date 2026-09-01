@@ -72,7 +72,7 @@ const About = () => {
             <i className="font-serif-display font-normal not-italic italic text-brand-mint">conviction</i>
           </h1>
           <p className="mx-auto mt-6 max-w-[540px] text-[15.5px] leading-relaxed text-white/70">
-            We&rsquo;re a team of investors, operators, and builders committed to backing exceptional leaders and
+            We’re a team of investors, operators, and builders committed to backing exceptional leaders and
             turning bold ideas into lasting value.
           </p>
         </div>
@@ -129,7 +129,7 @@ const About = () => {
               className={`max-w-[360px] text-[15px] leading-[1.65] text-gray-500 ${revealCls(visionInView)}`}
               style={{ transitionDelay: visionInView ? '100ms' : '0ms' }}
             >
-              From first check to exit, we walk alongside founders &mdash; bringing capital, insight, and an
+              From first check to exit, we walk alongside founders — bringing capital, insight, and an
               unwavering commitment to long-term value creation.
             </p>
           </div>
@@ -219,7 +219,7 @@ const About = () => {
               className={`mx-auto mt-4 max-w-[520px] text-[1rem] leading-[1.65] text-gray-500 ${revealCls(valuesInView)}`}
               style={{ transitionDelay: valuesInView ? '300ms' : '0ms' }}
             >
-              We&rsquo;re proud to be supported by a network of world-class investors who share our vision for
+              We’re proud to be supported by a network of world-class investors who share our vision for
               innovation and excellence.
             </p>
           </div>
@@ -259,17 +259,17 @@ const About = () => {
               capital and stay by their side long after the check clears.
             </p>
             <p className="mb-5 max-w-[460px] text-[1.05rem] leading-[1.75] text-gray-500">
-              This isn&rsquo;t just a fund. It&rsquo;s a community where ideas grow, challenges are met with
-              rigor, and every founder&rsquo;s voice matters. None of it would be possible without the trust of
-              the people who&rsquo;ve built alongside us.
+              This isn’t just a fund. It’s a community where ideas grow, challenges are met with
+              rigor, and every founder’s voice matters. None of it would be possible without the trust of
+              the people who’ve built alongside us.
             </p>
             <p className="max-w-[460px] text-[1.05rem] leading-[1.75] text-gray-500">
-              Together, we&rsquo;re building something that compounds &mdash; and we&rsquo;re just getting started.
+              Together, we’re building something that compounds — and we’re just getting started.
             </p>
 
             <div className="mt-7">
               <div className="text-[1.3rem] font-bold text-brand-950">Bali Gee</div>
-              <div className="mt-1 text-[0.98rem] text-gray-500">Co-Founder &amp; Managing Partner</div>
+              <div className="mt-1 text-[0.98rem] text-gray-500">Co-Founder & Managing Partner</div>
             </div>
           </div>
 
@@ -294,7 +294,7 @@ const About = () => {
             className={`mt-5 max-w-[520px] text-[1.05rem] leading-[1.65] text-white/65 ${revealCls(teamInView)}`}
             style={{ transitionDelay: teamInView ? '100ms' : '0ms' }}
           >
-            Behind every investment is a team of investors, operators, and problem-solvers who&rsquo;ve built and
+            Behind every investment is a team of investors, operators, and problem-solvers who’ve built and
             scaled companies themselves.
           </p>
         </div>
@@ -364,7 +364,7 @@ const About = () => {
                   className={`rounded-[20px] bg-white p-7 ${revealCls(testiInView)}`}
                   style={{ transitionDelay: testiInView ? `${200 + i * 80}ms` : '0ms' }}
                 >
-                  <p className="text-[1.02rem] leading-[1.62] text-brand-950">&ldquo;{t.quote}&rdquo;</p>
+                  <p className="text-[1.02rem] leading-[1.62] text-brand-950">“{t.quote}”</p>
                   <div className="mt-6 flex items-center gap-3">
                     <img src={t.img} alt={t.name} className="h-10 w-10 rounded-full object-cover" />
                     <div>

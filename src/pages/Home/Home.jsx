@@ -140,7 +140,7 @@ const Home = () => {
         >
           <div className="mb-9 flex flex-col items-start gap-4 min-[560px]:flex-row min-[560px]:items-center min-[560px]:justify-between">
             <h2 className="font-serif-display text-[clamp(30px,4.4vw,46px)] font-normal">
-              News <i className="italic">&amp;</i> Insights
+              News <i className="italic">&</i> Insights
             </h2>
             <Link
               to="/news"
