@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Investment Approach', to: '/approach' },
-  { label: 'Insights', to: null },
+  { label: 'Insights', to: '/insights' },
 ]
 
 const ABOUT_DROPDOWN_LABEL = 'About Us'

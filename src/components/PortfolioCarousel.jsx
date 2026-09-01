@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import useInView from '../hooks/useInView'
+import heroImg1 from '../assets/h1.jpg'
+import heroImg2 from '../assets/h2.jpg'
+import heroImg3 from '../assets/h3.jpg'
+import heroImg4 from '../assets/h4.jpg'
+import heroImg5 from '../assets/h5.jpg'
+import heroImg6 from '../assets/h6.jpg'
+import heroImg7 from '../assets/h7.jpg'
 
 const CARDS = [
   {
     id: 'steel-river',
-    kind: 'brand',
-    bgClass: 'bg-gradient-to-br from-gray-400 to-gray-500',
+    img: heroImg1,
     logo: (
       <>
         <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
@@ -16,13 +22,10 @@ const CARDS = [
     logoSub: 'RIVER',
     name: 'Steel River',
     desc: 'An industrial services platform executing a disciplined buy-and-build strategy in niche verticals. Its foundational acquisition, CraneTech, specializes in the inspection, repair, and manufacturing of industrial overhead cranes.',
-    pattern: { cx: 330, cy: 150 },
   },
-  { id: 'illustration-1', kind: 'illustration', variant: 'lines' },
   {
     id: 'union-software',
-    kind: 'brand',
-    bgClass: 'bg-gradient-to-br from-[#4a3226] to-[#2e1d15]',
+    img: heroImg4,
     logo: (
       <>
         <rect x="3" y="3" width="18" height="18" rx="4" stroke="#fff" strokeWidth="1.4" />
@@ -33,13 +36,10 @@ const CARDS = [
     logoSub: 'SOFTWARE',
     name: 'Union Software Group',
     desc: 'A long-term hold company that acquires and grows high-quality vertical market businesses. Its cornerstone acquisition, BusPlanner, is the leading provider of transportation and logistics software.',
-    pattern: { cx: 60, cy: 120 },
   },
-  { id: 'illustration-2', kind: 'illustration', variant: 'bars' },
   {
     id: 'vertex-materials',
-    kind: 'brand',
-    bgClass: 'bg-gradient-to-br from-brand-800 to-brand-950',
+    img: heroImg7,
     logo: (
       <>
         <path d="M4 17 12 3l8 14" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
@@ -50,7 +50,54 @@ const CARDS = [
     logoSub: 'MATERIALS',
     name: 'Vertex Materials',
     desc: 'A specialty distributor supplying engineered materials to manufacturers across the industrial Midwest. Built on decades-old supplier relationships and a reputation for reliability.',
-    pattern: { cx: 330, cy: 130 },
+  },
+  {
+    id: 'lattice-pay',
+    img: heroImg2,
+    logo: (
+      <>
+        <rect x="3" y="6" width="18" height="12" rx="2" stroke="#fff" strokeWidth="1.4" />
+        <path d="M3 10h18" stroke="#fff" strokeWidth="1.4" />
+      </>
+    ),
+    logoText: 'Lattice',
+    logoSub: 'PAY',
+    name: 'Lattice Pay',
+    desc: 'A payments infrastructure platform giving African fintechs a single API for card issuing, transfers, and settlement. We backed the founding team at pre-seed and led its Series A.',
+  },
+  {
+    id: 'northgate-logistics',
+    img: heroImg3,
+    logo: (
+      <>
+        <path d="M3 7h11v9H3z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
+        <path d="M14 10h4l3 3v3h-7z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
+        <circle cx="7" cy="18" r="1.6" stroke="#fff" strokeWidth="1.4" />
+        <circle cx="17" cy="18" r="1.6" stroke="#fff" strokeWidth="1.4" />
+      </>
+    ),
+    logoText: 'Northgate',
+    logoSub: 'LOGISTICS',
+    name: 'Northgate Logistics',
+    desc: 'A freight visibility and dispatch platform for mid-market carriers, replacing spreadsheets and phone calls with real-time tracking and automated load matching.',
+  },
+  {
+    id: 'meridian-health',
+    img: heroImg5,
+    logo: <path d="M3 12h4l2-5 4 10 2-5h6" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />,
+    logoText: 'Meridian',
+    logoSub: 'HEALTH',
+    name: 'Meridian Health',
+    desc: 'A remote patient monitoring platform helping health systems manage chronic care between visits, reducing readmissions through daily vitals tracking and clinician alerts.',
+  },
+  {
+    id: 'harbor-analytics',
+    img: heroImg6,
+    logo: <path d="M4 20V10M10 20V4M16 20v-7M20 20v-3" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" />,
+    logoText: 'Harbor',
+    logoSub: 'ANALYTICS',
+    name: 'Harbor Analytics',
+    desc: 'A data infrastructure company helping mid-market enterprises consolidate fragmented systems into a single governed source of truth for reporting and forecasting.',
   },
 ]
 
@@ -66,9 +113,16 @@ const ChevronRight = () => (
 )
 
 const BrandCard = ({ card }) => (
-  <div
-    className={`relative flex h-[300px] w-[min(320px,74vw)] shrink-0 scroll-ml-6 flex-col justify-end overflow-hidden rounded-[20px] p-6 text-white transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-[3] hover:scale-[1.045] min-[760px]:h-[340px] min-[760px]:p-[26px] ${card.bgClass}`}
-  >
+  <div className="relative flex h-[300px] w-[min(320px,74vw)] shrink-0 scroll-ml-6 flex-col justify-end overflow-hidden rounded-[20px] p-6 text-white transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-[3] hover:scale-[1.045] min-[760px]:h-[340px] min-[760px]:p-[26px]">
+    <img
+      src={card.img}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/45 to-brand-950/10" />
+
     <div className="absolute top-7 left-7 z-[2] flex items-center gap-2.5">
       <svg viewBox="0 0 24 24" fill="none" className="h-[26px] w-[26px] shrink-0">
         {card.logo}
@@ -78,64 +132,11 @@ const BrandCard = ({ card }) => (
         <span className="block text-[10px] font-medium tracking-[0.14em] opacity-75">{card.logoSub}</span>
       </span>
     </div>
-    <svg
-      className="absolute inset-0 z-0 opacity-35"
-      viewBox="0 0 400 430"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <circle cx={card.pattern.cx} cy={card.pattern.cy} r="60" stroke="#fff" strokeOpacity="0.18" fill="none" />
-      <circle cx={card.pattern.cx} cy={card.pattern.cy} r="95" stroke="#fff" strokeOpacity="0.12" fill="none" />
-      <circle cx={card.pattern.cx} cy={card.pattern.cy} r="130" stroke="#fff" strokeOpacity="0.08" fill="none" />
-    </svg>
+
     <div className="relative z-[2]">
       <div className="mb-3 text-[19px] font-semibold tracking-[-0.01em]">{card.name}</div>
       <div className="max-w-[320px] text-[13.5px] leading-[1.65] text-white/82">{card.desc}</div>
     </div>
-  </div>
-)
-
-const IllustrationCard = ({ variant }) => (
-  <div className="relative h-[300px] w-[min(420px,78vw)] shrink-0 scroll-ml-6 overflow-hidden rounded-[20px] transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-[3] hover:scale-[1.045] min-[760px]:h-[340px]">
-    <svg
-      viewBox="0 0 480 430"
-      width="100%"
-      height="100%"
-      preserveAspectRatio="xMidYMax slice"
-      className="absolute inset-0 h-full w-full object-cover"
-      style={{ background: 'linear-gradient(180deg, #a9c6dd 0%, #cfe0e9 45%, #ecd9a3 60%, #b7a06a 65%, #7f8f6a 72%, #5d6e4d 100%)' }}
-    >
-      {variant === 'lines' ? (
-        <>
-          <g stroke="#3a4a3f" strokeWidth="5" fill="none" strokeLinecap="round">
-            <path d="M120 430V300 L60 250" />
-            <path d="M120 300 L210 220 L280 260" />
-            <path d="M240 430V260 L300 190 L390 230" />
-            <path d="M300 260V430" />
-            <path d="M340 430V300 L410 240" />
-          </g>
-          <g fill="#d8b34a">
-            <circle cx="60" cy="250" r="6" />
-            <circle cx="280" cy="260" r="6" />
-          </g>
-          <g fill="#3f7e57">
-            <circle cx="210" cy="220" r="6" />
-            <circle cx="390" cy="230" r="6" />
-          </g>
-          <rect x="90" y="410" width="300" height="20" fill="#8f8f78" opacity="0.6" />
-        </>
-      ) : (
-        <g fill="#4b5a52" opacity="0.85">
-          <rect x="40" y="230" width="46" height="200" />
-          <rect x="100" y="180" width="46" height="250" />
-          <rect x="160" y="260" width="46" height="170" />
-          <rect x="220" y="140" width="46" height="290" />
-          <rect x="280" y="210" width="46" height="220" />
-          <rect x="340" y="170" width="46" height="260" />
-          <rect x="400" y="240" width="46" height="190" />
-        </g>
-      )}
-    </svg>
   </div>
 )
 
@@ -241,17 +242,11 @@ const PortfolioCarousel = () => {
               dragging ? 'cursor-grabbing [scroll-snap-type:none]' : 'cursor-grab'
             }`}
           >
-            {CARDS.map((card) =>
-              card.kind === 'brand' ? (
-                <div key={card.id} data-pf-card className="snap-start">
-                  <BrandCard card={card} />
-                </div>
-              ) : (
-                <div key={card.id} data-pf-card className="snap-start">
-                  <IllustrationCard variant={card.variant} />
-                </div>
-              ),
-            )}
+            {CARDS.map((card) => (
+              <div key={card.id} data-pf-card className="snap-start">
+                <BrandCard card={card} />
+              </div>
+            ))}
           </div>
 
           <div className="mt-9 flex items-center gap-6">

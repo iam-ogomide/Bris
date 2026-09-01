@@ -1,0 +1,575 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import useInView from '../hooks/useInView'
+import heroImg1 from '../assets/h1.jpg'
+import heroImg2 from '../assets/h2.jpg'
+import heroImg3 from '../assets/h3.jpg'
+import heroImg4 from '../assets/h4.jpg'
+import heroImg5 from '../assets/h5.jpg'
+import heroImg6 from '../assets/h6.jpg'
+import heroImg7 from '../assets/h7.jpg'
+
+const ArrowUpRightIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M7 17L17 7M17 7H9M17 7V15" />
+  </svg>
+)
+
+const PlayIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" className={className}>
+    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+  </svg>
+)
+
+const XIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className={className}>
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="6" y1="18" x2="18" y2="6" />
+  </svg>
+)
+
+const ArrowLeftIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="19" y1="12" x2="5" y2="12" />
+    <polyline points="12 19 5 12 12 5" />
+  </svg>
+)
+
+const ArrowRightIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+)
+
+const FEATURED = {
+  kicker: 'White Paper',
+  date: 'August 2026',
+  title: 'Investing with Conviction: Our 2026 Market Outlook',
+  url: '#',
+}
+
+const VIDEOS = [
+  { title: 'Our Managing Partner on Bloomberg: Finding Value in Early-Stage Markets', meta: 'August 2026', img: heroImg1 },
+  { title: 'Bris Annual LP Meeting — Highlights', meta: 'June 2026', img: heroImg2 },
+  { title: 'Inside the Round: A Conversation With Our Managing Partner', meta: 'May 2026', img: heroImg3 },
+  { title: 'On CNBC: The Case for Seed Investing in a Slower Market', meta: 'April 2026', img: heroImg4 },
+  { title: 'Bris at Africa Tech Summit 2026', meta: 'March 2026', img: heroImg5 },
+  { title: 'Portfolio Spotlight: Building Infrastructure That Scales', meta: 'February 2026', img: heroImg6 },
+  { title: 'On the Venture Roundtable: Underwriting Conviction', meta: 'January 2026', img: heroImg7 },
+  { title: '2025 Year in Review', meta: 'December 2025', img: heroImg1 },
+]
+
+const CATEGORIES = ['All Categories', 'Media Coverage', 'Podcast', 'Press Release', 'Thought Leadership', 'White Paper']
+
+const NEWS_ITEMS = [
+  {
+    cat: 'White Paper',
+    title: 'Investing with Conviction: Our 2026 Market Outlook',
+    source: 'Bris',
+    date: 'August 2026',
+    excerpt: 'Where we see durable growth in a higher-cost-of-capital environment, and the underwriting discipline that matters most going into next year.',
+  },
+  {
+    cat: 'Podcast',
+    title: 'Bris on The Venture Lens: Finding Signal in Seed Rounds',
+    source: 'The Venture Lens',
+    date: 'August 2026',
+    excerpt: 'A conversation on separating genuine early traction from a well-produced deck, and why conviction rarely comes from the numbers alone.',
+  },
+  {
+    cat: 'Media Coverage',
+    title: 'Bris closes $120M Fund III to back early-stage founders',
+    source: 'TechCrunch',
+    date: 'August 2026',
+    excerpt: 'The new fund extends the firm’s thesis of writing concentrated, high-conviction first checks across fintech and infrastructure.',
+  },
+  {
+    cat: 'Press Release',
+    title: 'Bris announces two new partners joining the investment team',
+    source: 'Bris',
+    date: 'July 2026',
+    excerpt: 'Two operators-turned-investors join the partnership, deepening the firm’s bench across enterprise software and payments.',
+  },
+  {
+    cat: 'Thought Leadership',
+    title: 'What We Look For in a Seed-Stage Founder',
+    source: 'Bris',
+    date: 'July 2026',
+    excerpt: 'Conviction at the earliest stage rarely comes from a polished deck — it comes from how founders think under pressure.',
+  },
+  {
+    cat: 'Media Coverage',
+    title: 'The funds still writing first checks in a slower market',
+    source: 'Fortune Term Sheet',
+    date: 'July 2026',
+    excerpt: 'A look at the early-stage investors, Bris among them, still underwriting new companies while later-stage capital stays cautious.',
+  },
+  {
+    cat: 'Podcast',
+    title: 'Underwriting Conviction: A Conversation With Our Managing Partner',
+    source: 'Bris',
+    date: 'June 2026',
+    excerpt: 'On staged capital, downside discipline, and why the firm protects the downside so conviction can run on the upside.',
+  },
+  {
+    cat: 'White Paper',
+    title: 'Why Late-Stage Valuations Are Resetting',
+    source: 'Bris',
+    date: 'June 2026',
+    excerpt: 'Growth investors are re-pricing risk against a higher cost of capital, and the metrics that matter have shifted accordingly.',
+  },
+  {
+    cat: 'Press Release',
+    title: 'Bris portfolio company closes $40M Series B',
+    source: 'Bris',
+    date: 'June 2026',
+    excerpt: 'A company backed at pre-seed raises a growth round at nearly 4x its Series A mark, led by a top-tier growth fund.',
+  },
+  {
+    cat: 'Thought Leadership',
+    title: 'How We Think About Market Timing',
+    source: 'Bris',
+    date: 'May 2026',
+    excerpt: 'Timing is the variable founders can least control and most obsess over — we look at adoption curves, not calendar years.',
+  },
+  {
+    cat: 'Media Coverage',
+    title: 'Bris named to the Emerging Manager 30 list',
+    source: 'PitchBook',
+    date: 'May 2026',
+    excerpt: 'An annual ranking of the emerging fund managers delivering the strongest early returns for their limited partners.',
+  },
+  {
+    cat: 'Podcast',
+    title: "A Founder's Guide to Term Sheets",
+    source: 'Bris',
+    date: 'May 2026',
+    excerpt: 'Which terms are standard, which are worth pushing back on, and the clauses founders misread most often.',
+  },
+  {
+    cat: 'White Paper',
+    title: 'Securing the Data Room During Diligence',
+    source: 'Bris',
+    date: 'April 2026',
+    excerpt: 'Most diligence leaks trace back to access controls, not a flaw in whatever tool is hosting the data room.',
+  },
+  {
+    cat: 'Press Release',
+    title: 'Bris opens a new office in Lagos',
+    source: 'Bris',
+    date: 'April 2026',
+    excerpt: 'The new office puts the investment team closer to founders building across West Africa’s fastest-growing sectors.',
+  },
+  {
+    cat: 'Thought Leadership',
+    title: 'Choosing the Right Cap Table Tool',
+    source: 'Bris',
+    date: 'March 2026',
+    excerpt: 'The right tool fits how your team already works, not the one with the flashiest feature list.',
+  },
+  {
+    cat: 'Media Coverage',
+    title: 'Inside the fund betting early on African fintech',
+    source: 'Bloomberg',
+    date: 'March 2026',
+    excerpt: 'A profile of the firm’s thesis-driven approach to underwriting payments and infrastructure founders at pre-seed.',
+  },
+  {
+    cat: 'Podcast',
+    title: 'Building Infrastructure That Scales With You',
+    source: 'Bris',
+    date: 'February 2026',
+    excerpt: 'Why the right hosting and infrastructure choice depends less on price and more on what a company’s stage actually needs.',
+  },
+  {
+    cat: 'White Paper',
+    title: 'What a Founder-First Culture Actually Looks Like',
+    source: 'Bris',
+    date: 'February 2026',
+    excerpt: 'It shows up in how fast a fund answers a hard question, not in the language on its website.',
+  },
+]
+
+const VIDEO_EMBED = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+const PAGE_SIZE = 6
+
+const Insights = () => {
+  const [videoOpen, setVideoOpen] = useState(false)
+  const [activeVideo, setActiveVideo] = useState(null)
+  const [articleOpen, setArticleOpen] = useState(false)
+  const [activeArticle, setActiveArticle] = useState(null)
+  const [activeCategory, setActiveCategory] = useState('All Categories')
+  const [page, setPage] = useState(1)
+
+  const scrollerRef = useRef(null)
+  const [videosRef, videosInView] = useInView(0.1)
+  const [newsRef, newsInView] = useInView(0.05)
+
+  const filteredItems = useMemo(
+    () => (activeCategory === 'All Categories' ? NEWS_ITEMS : NEWS_ITEMS.filter((n) => n.cat === activeCategory)),
+    [activeCategory],
+  )
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE))
+  const pagedItems = filteredItems.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
+  const countFor = (cat) => (cat === 'All Categories' ? NEWS_ITEMS.length : NEWS_ITEMS.filter((n) => n.cat === cat).length)
+
+  const selectCategory = (cat) => {
+    setActiveCategory(cat)
+    setPage(1)
+  }
+
+  const scrollVideos = (dir) => scrollerRef.current?.scrollBy({ left: dir * 640, behavior: 'smooth' })
+
+  const openVideo = (v) => {
+    setActiveVideo(v)
+    setVideoOpen(true)
+  }
+  const closeVideo = () => setVideoOpen(false)
+
+  const openArticle = (n) => {
+    setActiveArticle(n)
+    setArticleOpen(true)
+  }
+  const closeArticle = () => setArticleOpen(false)
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      setVideoOpen(false)
+      setArticleOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
+  const revealKey = `${activeCategory}-${page}`
+
+  return (
+    <div className="bg-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-brand-950">
+        <Navbar />
+        <div className="relative mx-auto grid max-w-[1380px] gap-10 px-6 pt-6 pb-16 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16 lg:pb-20">
+          <div>
+            <div
+              className="mb-5 flex animate-[heroFadeUp_0.7s_ease_forwards] items-center gap-3 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+            >
+              <span className="h-px w-10 bg-brand-mint" />
+              <span className="text-xs font-semibold tracking-[0.08em] text-white/60 uppercase">Research &amp; Commentary</span>
+            </div>
+
+            <h1 className="font-serif-display text-[clamp(40px,6vw,76px)] leading-[0.98] font-medium text-white">
+              <span className="block overflow-hidden">
+                <span
+                  className="block animate-[heroRiseIn_0.9s_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:animate-none"
+                  style={{ animationDelay: '0.05s' }}
+                >
+                  Our
+                </span>
+              </span>
+              <span className="block overflow-hidden">
+                <span
+                  className="block animate-[heroRiseIn_0.9s_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:animate-none"
+                  style={{ animationDelay: '0.16s' }}
+                >
+                  Insights
+                </span>
+              </span>
+            </h1>
+
+            <p
+              className="mt-6 max-w-[46ch] animate-[heroFadeUp_0.8s_ease_forwards] text-[17px] leading-relaxed text-white/60 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+              style={{ animationDelay: '0.5s' }}
+            >
+              Perspective from our investment team on the markets we back, drawn from white papers, media appearances, and conversations with our
+              founders.
+            </p>
+          </div>
+
+          <div
+            className="relative animate-[heroFadeUp_0.8s_ease_forwards] rounded-[28px] bg-brand-900 p-8 opacity-0 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] motion-reduce:animate-none motion-reduce:opacity-100"
+            style={{ animationDelay: '0.35s' }}
+          >
+            <div className="mb-5 flex items-center justify-between text-[12.5px] tracking-[0.03em] text-brand-mint">
+              <span>{FEATURED.kicker}</span>
+              <span className="text-white/50">{FEATURED.date}</span>
+            </div>
+            <h2 className="mb-7 font-serif-display text-2xl leading-[1.2] font-medium text-white">{FEATURED.title}</h2>
+            <a
+              href={FEATURED.url}
+              className="group inline-flex items-center gap-2 border-b border-white/30 pb-1 text-sm text-white transition-all duration-300 hover:gap-3 hover:border-white"
+            >
+              Read the paper
+              <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <div className="pointer-events-none absolute inset-2.5 rounded-2xl border border-white/10" />
+          </div>
+        </div>
+      </section>
+
+      {/* Ticker */}
+      <div className="group overflow-hidden border-y border-white/10 bg-brand-950">
+        <div className="flex w-max animate-[marqueeScroll_38s_linear_infinite] py-3.5 motion-reduce:animate-none group-hover:[animation-play-state:paused]">
+          {[...NEWS_ITEMS.slice(0, 9), ...NEWS_ITEMS.slice(0, 9)].map((n, i) => (
+            <span key={i} className="flex shrink-0 items-center gap-4 px-8 text-[13.5px] whitespace-nowrap text-white/70">
+              <b className="font-semibold text-brand-mint">{n.cat}</b> {n.title} <span className="text-white/20">·</span> {n.date}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Videos */}
+      <section ref={videosRef} className="bg-white px-6 py-16 sm:px-8 sm:py-20">
+        <div
+          className={`mx-auto max-w-[1380px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            videosInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+          }`}
+        >
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Watch</span>
+              <h2 className="font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">Videos</h2>
+            </div>
+            <div className="flex gap-2.5">
+              <button
+                type="button"
+                onClick={() => scrollVideos(-1)}
+                aria-label="Scroll videos left"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-brand-950 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-950 hover:bg-brand-950 hover:text-white"
+              >
+                <ArrowLeftIcon className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollVideos(1)}
+                aria-label="Scroll videos right"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-brand-950 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-950 hover:bg-brand-950 hover:text-white"
+              >
+                <ArrowRightIcon className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={scrollerRef}
+            className="flex gap-5 overflow-x-auto pb-3 [scroll-snap-type:x_proximity] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {VIDEOS.map((v, i) => (
+              <button
+                key={`${v.title}-${i}`}
+                type="button"
+                onClick={() => openVideo(v)}
+                style={{ transitionDelay: videosInView ? `${i * 60}ms` : '0ms' }}
+                className={`group w-[280px] shrink-0 text-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [scroll-snap-align:start] sm:w-[300px] ${
+                  videosInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}
+              >
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100">
+                  <img
+                    src={v.img}
+                    alt={v.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover grayscale-[45%] contrast-105 transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/75 via-brand-950/0 to-transparent" />
+                  <div className="absolute bottom-3.5 left-4 flex items-center gap-2.5 text-[12.5px] font-medium text-white">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/70 transition-all duration-300 group-hover:border-brand-mint group-hover:bg-brand-mint">
+                      <PlayIcon className="ml-0.5 h-3 w-3 text-white transition-colors duration-300 group-hover:text-brand-950" />
+                    </span>
+                    Watch
+                  </div>
+                </div>
+                <h4 className="mt-3.5 line-clamp-2 text-[14.5px] leading-snug font-semibold text-brand-950">{v.title}</h4>
+                <p className="mt-1 text-[12.5px] text-gray-400">{v.meta}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* News & Insights */}
+      <section ref={newsRef} className="bg-gray-50 px-6 py-16 sm:px-8 sm:py-20">
+        <div
+          className={`mx-auto max-w-[1380px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            newsInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+          }`}
+        >
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Latest</span>
+              <h2 className="font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">News &amp; Insights</h2>
+            </div>
+            <p className="max-w-[320px] text-[13.5px] leading-relaxed text-gray-500">{NEWS_ITEMS.length} items, filterable by category.</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_1fr]">
+            <aside className="flex flex-wrap gap-2 lg:sticky lg:top-24 lg:h-fit lg:flex-col lg:flex-nowrap lg:gap-1">
+              <p className="mb-1 hidden text-[12.5px] font-semibold text-gray-400 lg:block">Categories</p>
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => selectCategory(cat)}
+                  className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[13.5px] font-medium whitespace-nowrap transition-all duration-200 lg:w-full lg:rounded-none lg:border-none lg:border-b lg:border-transparent lg:px-0 lg:py-2.5 ${
+                    activeCategory === cat
+                      ? 'border-brand-950 bg-brand-950 text-white lg:bg-transparent lg:font-semibold lg:text-brand-950'
+                      : 'border-gray-200 bg-white text-gray-500 hover:text-brand-950 lg:bg-transparent'
+                  }`}
+                >
+                  <span
+                    className={`hidden h-1.5 w-1.5 shrink-0 rounded-full lg:inline-block ${
+                      activeCategory === cat ? 'bg-brand-mint' : 'bg-transparent'
+                    }`}
+                  />
+                  {cat}
+                  <span className="ml-auto text-[11px] text-gray-400 tabular-nums">{countFor(cat)}</span>
+                </button>
+              ))}
+            </aside>
+
+            <div>
+              <div className="border-t border-gray-200">
+                {pagedItems.length === 0 ? (
+                  <p className="py-10 text-[14.5px] text-gray-500">No items in this category yet.</p>
+                ) : (
+                  pagedItems.map((n, i) => (
+                    <button
+                      key={`${revealKey}-${n.title}`}
+                      type="button"
+                      onClick={() => openArticle(n)}
+                      style={{ animationDelay: `${i * 55}ms` }}
+                      className="group grid w-full grid-cols-1 items-baseline gap-1.5 border-b border-gray-200 py-6 text-left opacity-0 transition-colors duration-200 hover:bg-white animate-[heroFadeUp_0.5s_ease_both] motion-reduce:animate-none motion-reduce:opacity-100 sm:grid-cols-[110px_1fr_120px] sm:gap-6 sm:py-5"
+                    >
+                      <span className="text-xs font-semibold text-brand-800">{n.cat}</span>
+                      <h4 className="font-serif-display text-lg leading-snug font-medium text-brand-950 transition-colors duration-200 group-hover:text-brand-800 sm:text-[1.15rem]">
+                        {n.title}
+                      </h4>
+                      <span className="text-[13px] text-gray-400 sm:text-right">{n.date}</span>
+                    </button>
+                  ))
+                )}
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                <span className="text-[13.5px] text-gray-400">
+                  {filteredItems.length === 0 ? '0' : `${(page - 1) * PAGE_SIZE + 1}–${Math.min(page * PAGE_SIZE, filteredItems.length)}`} of{' '}
+                  {filteredItems.length}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    disabled={page === 1}
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    aria-label="Previous page"
+                    className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-all duration-200 enabled:hover:bg-brand-950 enabled:hover:text-white disabled:opacity-30"
+                  >
+                    <ArrowLeftIcon className="h-3.5 w-3.5" />
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setPage(n)}
+                      className={`flex h-9 w-9 items-center justify-center rounded-full text-[13.5px] font-semibold transition-all duration-200 ${
+                        page === n ? 'bg-brand-950 text-white' : 'text-gray-400 hover:text-brand-950'
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    disabled={page === totalPages}
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    aria-label="Next page"
+                    className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-all duration-200 enabled:hover:bg-brand-950 enabled:hover:text-white disabled:opacity-30"
+                  >
+                    <ArrowRightIcon className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+
+      {/* Video Modal */}
+      <div
+        onClick={(e) => e.target === e.currentTarget && closeVideo()}
+        className={`fixed inset-0 z-[1000] flex items-center justify-center bg-brand-950/70 p-5 backdrop-blur-md transition-opacity duration-300 ${
+          videoOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      >
+        <div
+          className={`relative w-full max-w-[840px] rounded-[20px] bg-black p-2.5 shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-transform duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            videoOpen ? 'translate-y-0 scale-100' : 'translate-y-[30px] scale-95'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={closeVideo}
+            aria-label="Close video"
+            className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white transition-colors duration-200 hover:bg-white/30"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black">
+            {videoOpen && activeVideo && (
+              <iframe
+                title={activeVideo.title}
+                src={VIDEO_EMBED}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="h-full w-full border-0"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Article Modal */}
+      <div
+        onClick={(e) => e.target === e.currentTarget && closeArticle()}
+        className={`fixed inset-0 z-[1000] flex items-center justify-center bg-brand-950/65 p-5 backdrop-blur-md transition-opacity duration-300 ${
+          articleOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      >
+        <div
+          className={`relative w-full max-w-[640px] rounded-[28px] bg-white p-7 shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-transform duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:p-9 ${
+            articleOpen ? 'translate-y-0 scale-100' : 'translate-y-[30px] scale-95'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={closeArticle}
+            aria-label="Close"
+            className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-brand-950 transition-colors duration-200 hover:bg-gray-200"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+          {activeArticle && (
+            <>
+              <span className="mb-3.5 inline-block rounded-full bg-brand-mint px-3.5 py-1.5 text-[0.8rem] font-bold text-brand-950">
+                {activeArticle.cat}
+              </span>
+              <h2 className="mb-2 pr-8 font-serif-display text-[1.5rem] leading-[1.25] font-medium text-brand-950 sm:text-[1.7rem]">
+                {activeArticle.title}
+              </h2>
+              <p className="mb-4 text-[13px] text-gray-400">
+                {activeArticle.source} · {activeArticle.date}
+              </p>
+              <p className="text-[0.95rem] leading-[1.65] text-gray-600">{activeArticle.excerpt}</p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Insights
