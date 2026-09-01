@@ -5,7 +5,7 @@ import useInView from '../hooks/useInView'
 import { ArrowUpRightIcon, PlayIcon, XIcon, ArrowLeftIcon, ArrowRightIcon } from '../constants/icons'
 import { FEATURED, VIDEOS, CATEGORIES, NEWS_ITEMS } from '../constants/data'
 
-const VIDEO_EMBED = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+const VIDEO_EMBED = 'https://www.youtube.com/embed/2u007Msq1qo?autoplay=1'
 const PAGE_SIZE = 6
 
 const Insights = () => {

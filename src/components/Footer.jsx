@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useInView from '../hooks/useInView'
 import { ArrowUpRightIcon, ChevronUpIcon, BrandMarkIcon } from '../constants/icons'
-import { EXPLORE_LINKS, SOCIALS } from '../constants/data'
+import { NAV_LINKS, ABOUT_ITEMS, SOCIALS } from '../constants/data'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
@@ -52,18 +52,18 @@ const Footer = () => {
 
           <div className="flex flex-wrap gap-[70px] min-[860px]:gap-[90px]">
             <div>
-              <div className="mb-[18px] text-[11.5px] font-semibold tracking-[1.2px] text-gray-400 uppercase">Explore</div>
-              {EXPLORE_LINKS.map((label) => (
-                <a
+              <div className="mb-[18px] text-[11.5px] font-semibold tracking-[1.2px] text-gray-400 uppercase">Navigate</div>
+              {[...NAV_LINKS, ...ABOUT_ITEMS].map(({ label, to }) => (
+                <Link
                   key={label}
-                  href="#"
+                  to={to}
                   className="group relative mb-[15px] block w-fit text-[16.5px] font-medium text-brand-950 transition-transform duration-300 hover:translate-x-5 hover:text-black"
                 >
                   <span className="absolute top-px -left-5 -translate-x-1 text-[13px] text-brand-mint opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                     »
                   </span>
                   {label}
-                </a>
+                </Link>
               ))}
             </div>
 

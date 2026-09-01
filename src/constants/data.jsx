@@ -51,8 +51,6 @@ export const ABOUT_ITEMS = [
 
 //////// Footer 
 
-export const EXPLORE_LINKS = ['Investment', 'Advisor', 'AI Solutions', 'Focus', 'Company', 'News']
-
 export const SOCIALS = [
   { Icon: InstagramIcon, label: 'Instagram' },
   { Icon: XSocialIcon, label: 'X' },
