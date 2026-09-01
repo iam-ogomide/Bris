@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'Investment Criteria', to: null },
-  { label: 'Portfolio', to: null },
+  { label: 'Investment Approach', to: '/approach' },
+  { label: 'Insights', to: null },
 ]
 
 const ABOUT_DROPDOWN_LABEL = 'About Us'

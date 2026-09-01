@@ -205,15 +205,15 @@ const Home = () => {
             <h2 className="font-serif-display text-[clamp(30px,4.4vw,46px)] font-normal">
               News <i className="italic">&amp;</i> Insights
             </h2>
-            <a
-              href="#"
+            <Link
+              to="/news"
               className="group inline-flex items-center gap-2.5 rounded-full bg-gray-100 py-1.5 pr-1.5 pl-5 text-[15px] font-medium text-brand-950 transition-all duration-300 hover:-translate-y-px hover:bg-gray-200"
             >
               View All
               <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-brand-mint transition-all duration-400 group-hover:rotate-45 group-hover:bg-brand-800">
                 <ArrowUpRightIcon className="h-[15px] w-[15px] text-brand-950" />
               </span>
-            </a>
+            </Link>
           </div>
 
           <div className="group/hero relative aspect-[16/7.2] w-full cursor-pointer overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
