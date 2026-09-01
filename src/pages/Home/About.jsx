@@ -51,7 +51,7 @@ const About = () => {
 
   return (
     <>
-      {/* ================= HERO ================= */}
+      {/*  HERO */}
       <section className="relative overflow-hidden bg-brand-950">
         <div
           className="pointer-events-none absolute inset-0 opacity-80"
@@ -116,7 +116,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= VISION / MISSION / GOAL ================= */}
+      {/*  VISION */}
       <section className="bg-white px-5 py-20 text-brand-950 min-[900px]:px-12 min-[900px]:py-28">
         <div ref={visionRef} className="mx-auto max-w-[1180px]">
           <div className="mb-14 flex flex-col items-start justify-between gap-6 min-[860px]:flex-row min-[860px]:items-end">
@@ -180,7 +180,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= CORE VALUES ================= */}
+      {/*  CORE VALUES  */}
       <section className="bg-gray-50 px-5 py-20 text-center text-brand-950 min-[900px]:px-12 min-[900px]:py-28">
         <div ref={valuesRef} className="mx-auto max-w-[1180px]">
           <h2 className={`text-[clamp(2rem,4.4vw,3rem)] font-bold tracking-[-0.02em] ${revealCls(valuesInView)}`}>
@@ -249,7 +249,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= FOUNDER ================= */}
+      {/*  FOUNDER  */}
       <section className="bg-white px-5 py-20 text-brand-950 min-[900px]:px-12 min-[900px]:py-28">
         <div ref={founderRef} className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 min-[900px]:grid-cols-2 min-[900px]:gap-16">
           <div className={revealCls(founderInView)}>
@@ -284,7 +284,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= TEAM ================= */}
+      {/*  TEAM  */}
       <section id="team" className="overflow-hidden bg-brand-950 py-20 text-white min-[900px]:py-28">
         <div ref={teamRef} className="mx-auto max-w-[1180px] px-5 min-[900px]:px-12">
           <h2 className={`text-[clamp(2rem,4.4vw,3rem)] font-bold tracking-[-0.02em] ${revealCls(teamInView)}`}>
@@ -329,7 +329,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= TESTIMONIALS ================= */}
+      {/*  TESTIMONIALS */}
       <section className="bg-gray-50 px-5 py-24 min-[900px]:px-12">
         <div ref={testiRef} className="mx-auto max-w-[1180px]">
           <div className="mb-14 text-center">
@@ -393,7 +393,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= FAQ ================= */}
+      {/*  FAQ  */}
       <section className="bg-white px-5 py-24 min-[900px]:px-12">
         <div ref={faqRef} className="mx-auto grid max-w-[1180px] grid-cols-1 gap-11 min-[900px]:grid-cols-[0.85fr_1.4fr] min-[900px]:gap-16">
           <div className={revealCls(faqInView)}>

@@ -138,12 +138,7 @@ const News = () => {
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             />
 
-            {/* <div
-              title="Trending"
-              className="absolute top-6 left-6 z-[5] flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/15 shadow-[0_8px_20px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-[400ms] group-hover:scale-110 group-hover:rotate-[15deg]"
-            >
-              <FlameIcon className="h-5 w-5 text-white" />
-            </div> */}
+            
 
             <div className="absolute bottom-0 left-0 z-[5] max-w-[72%]">
               <div
@@ -159,7 +154,7 @@ const News = () => {
             </div>
           </article>
 
-          {/* CARD 2: Insights + sub-articles */}
+          {/*  Insights + sub-articles [Second Card] */}
           <article
             style={revealDelay(1)}
             className={`group relative flex flex-col justify-between rounded-[28px] bg-brand-mint/15 px-6 pt-5 pb-4 md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 ${reveal(1)}`}
@@ -205,7 +200,7 @@ const News = () => {
             </div>
           </article>
 
-          {/* CARD 3: Full background image feature */}
+          {/*  Valuation Card [Third Card] */}
           <article
             onClick={() => openArticle(CARD3)}
             style={revealDelay(2)}
@@ -224,7 +219,7 @@ const News = () => {
             </div>
           </article>
 
-          {/* CARD 4: Video / podcast */}
+          {/*  Video / podcast [Fourth Card] */}
           <article
             onClick={openVideo}
             style={revealDelay(3)}
@@ -256,7 +251,7 @@ const News = () => {
             </div>
           </article>
 
-          {/* CARD 5: Category tags */}
+          {/*  Tags[Fifth Card] */}
           <article
             style={revealDelay(4)}
             className={`flex min-h-[160px] flex-col justify-between rounded-[28px] border border-gray-200 bg-white p-5 min-[768px]:max-[1100px]:col-start-2 min-[768px]:max-[1100px]:col-end-3 min-[768px]:max-[1100px]:row-start-3 min-[768px]:max-[1100px]:row-end-4 min-[1101px]:col-start-3 min-[1101px]:col-end-4 min-[1101px]:row-start-2 min-[1101px]:row-end-3 ${reveal(4)}`}
@@ -306,7 +301,7 @@ const News = () => {
         </main>
       </section>
 
-      {/* Knowledge Posts / Blog */}
+      {/*  Blog */}
       <section ref={blogSectionRef} className="bg-white px-6 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-[1380px]">
           {selectedPost ? (

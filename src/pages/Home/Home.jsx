@@ -130,7 +130,7 @@ const Home = () => {
       <PortfolioCarousel />
       <TimelineSection />
 
-      {/* NEWS & INSIGHTS */}
+      {/* NEWS */}
       <section className="bg-white text-brand-950">
         <div
           ref={newsRef}
