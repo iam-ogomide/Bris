@@ -291,7 +291,9 @@ export const BrandMarkIcon = ({ color = '#0a1f1e', className = 'h-full w-full' }
   </svg>
 )
 
-/* ---- Core-values icons (Home / About) ---- */
+
+
+/////Core-values icons (Home / About)
 
 export const ConvictionIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -321,7 +323,9 @@ export const LongtermIcon = ({ className }) => (
   </svg>
 )
 
-/* ---- Portfolio carousel brand marks ---- */
+
+
+////Portfolio carousel brand marks
 
 export const SteelRiverLogo = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className}>
@@ -372,7 +376,9 @@ export const HarborAnalyticsLogo = ({ className }) => (
   </svg>
 )
 
-/* ---- TrustedBy marquee logo marks ---- */
+
+
+////TrustedBy marquee logo marks
 
 export const LogoTargetIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className}>

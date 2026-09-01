@@ -215,7 +215,7 @@ const Insights = () => {
               <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Latest</span>
               <h2 className="font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">News &amp; Insights</h2>
             </div>
-            <p className="max-w-[320px] text-[13.5px] leading-relaxed text-gray-500">{NEWS_ITEMS.length} items, filterable by category.</p>
+            <p className="max-w-[320px] text-[13.5px] leading-relaxed text-gray-500">{NEWS_ITEMS.length} items.</p>
           </div>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_1fr]">

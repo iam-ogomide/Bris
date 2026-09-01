@@ -194,7 +194,7 @@ const TimelineSection = () => {
           key={cardSwapKey}
           className="relative flex items-start gap-5 rounded-2xl border border-brand-mint/12 bg-[#0d211f] px-6 py-6 animate-[swapText_0.35s_cubic-bezier(0.22,1,0.36,1)] motion-reduce:animate-none min-[760px]:px-8 min-[760px]:py-7"
         >
-          <span className="min-h-[48px] w-[3px] shrink-0 self-stretch rounded-[3px] bg-gradient-to-b from-brand-mint to-brand-mint/20" />
+          {/* <span className="min-h-[48px] w-[3px] shrink-0 self-stretch rounded-[3px] bg-gradient-to-b from-brand-mint to-brand-mint/20" /> */}
           <div className="flex-1">
             <div className="mb-2 text-[17px] leading-[1.4] font-normal text-white">{card.title}</div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/20 bg-brand-mint/10 px-3 py-1 text-xs font-semibold tracking-[0.06em] text-brand-mint uppercase">
@@ -204,7 +204,7 @@ const TimelineSection = () => {
           </div>
         </div>
 
-        <p className="mt-6 text-right text-[11px] tracking-[0.06em] text-white/20">← → arrow keys to navigate</p>
+        {/* <p className="mt-6 text-right text-[11px] tracking-[0.06em] text-white/20">← → arrow keys to navigate</p> */}
       </div>
     </section>
   )

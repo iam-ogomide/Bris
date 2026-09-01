@@ -33,7 +33,8 @@ import {
   YoutubeIcon,
 } from './icons'
 
-/* ================= Navbar ================= */
+
+///Navbar
 
 export const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -47,7 +48,8 @@ export const ABOUT_ITEMS = [
   { label: 'Careers', to: '/careers', description: 'Open roles and life at Bris' },
 ]
 
-/* ================= Footer ================= */
+
+//////// Footer 
 
 export const EXPLORE_LINKS = ['Investment', 'Advisor', 'AI Solutions', 'Focus', 'Company', 'News']
 
@@ -58,7 +60,9 @@ export const SOCIALS = [
   { Icon: YoutubeIcon, label: 'YouTube' },
 ]
 
-/* ================= Home ================= */
+
+
+///Home
 
 export const NEWS_POSTS = [
   {
@@ -119,7 +123,8 @@ export const NEWS_POSTS = [
   },
 ]
 
-/* ================= Home / About ================= */
+
+////Home / About
 
 export const VALUES = [
   { key: 'conviction', Icon: ConvictionIcon, title: 'Conviction', desc: 'We back what we believe in, and stay the course even when markets don’t.' },
@@ -211,7 +216,8 @@ export const FAQS = [
   },
 ]
 
-/* ================= Approach ================= */
+
+/////Approach
 
 export const PILLARS = [
   {
@@ -295,7 +301,8 @@ export const STATS = [
   { value: 180, prefix: '', suffix: '+', label: 'Portfolio companies' },
 ]
 
-/* ================= Contact ================= */
+
+/////Contact
 
 export const BENEFITS = [
   'Improve usability of your product',
@@ -309,7 +316,8 @@ export const LOCATIONS = [
   { label: 'India', lines: ['Plot No 8-2-601/p/15ms', 'Banjara Hills, Road No 10', 'Hyderabad, 500034'] },
 ]
 
-/* ================= Careers ================= */
+
+////Careers
 
 export const DEPARTMENTS = ['Sales', 'Engineering', 'Design', 'Marketing', 'Support']
 
@@ -447,7 +455,8 @@ export const PERKS = [
   },
 ]
 
-/* ================= News ================= */
+
+/////News
 
 export const CARD1 = {
   category: 'Portfolio',
@@ -592,7 +601,8 @@ export const BLOG_POSTS = [
   },
 ]
 
-/* ================= Insights ================= */
+
+//////// Insights 
 
 export const FEATURED = {
   kicker: 'White Paper',
@@ -743,7 +753,8 @@ export const NEWS_ITEMS = [
   },
 ]
 
-/* ================= AboutUs (Home timeline) ================= */
+
+//////// AboutUs (Home timeline) 
 
 export const NODES = [
   { key: 'n1', type: 'plant', left: '8.49%', top: '72.5%' },
@@ -753,7 +764,8 @@ export const NODES = [
   { key: 'n5', type: 'light', left: '91.51%', top: '72.5%', year: 2024, label: '300% Growth', size: 'sm' },
 ]
 
-/* ================= OperatorsAccordion ================= */
+
+//////// OperatorsAccordion 
 
 export const ITEMS = [
   { title: 'Guidance Grounded In Real-World Experience' },
@@ -762,7 +774,7 @@ export const ITEMS = [
   { title: 'A Foundation Built on Lasting Trust' },
 ]
 
-/* ================= PortfolioCarousel ================= */
+//////// PortfolioCarousel 
 
 export const CARDS = [
   {
@@ -830,7 +842,8 @@ export const CARDS = [
   },
 ]
 
-/* ================= TimelineSection ================= */
+
+//////// TimelineSection 
 
 export const MILESTONES = [
   {
@@ -858,7 +871,8 @@ export const MILESTONES = [
   },
 ]
 
-/* ================= TrustedBy ================= */
+
+//////// TrustedBy 
 
 export const LOGOS = [
   { name: 'Logoipsum', icon: LogoTargetIcon },

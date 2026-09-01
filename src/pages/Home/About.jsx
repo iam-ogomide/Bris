@@ -8,7 +8,7 @@ import h2 from '../../assets/h2.jpg'
 import h3 from '../../assets/h3.jpg'
 import h6 from '../../assets/h6.jpg'
 import h7 from '../../assets/h7.jpg'
-import { ArrowRightBoldIcon, ChevronIcon, ChatBubbleIcon } from '../../constants/icons'
+import { ArrowRightBoldIcon, ChevronIcon,  } from '../../constants/icons'
 import { VALUES, BACKERS, TEAM, TESTIMONIALS, FAQS } from '../../constants/data'
 
 const revealCls = (inView) =>
@@ -334,9 +334,7 @@ const About = () => {
         <div ref={testiRef} className="mx-auto max-w-[1180px]">
           <div className="mb-14 text-center">
             <div className={`inline-flex items-center gap-2.5 text-[0.95rem] font-medium text-brand-950 ${revealCls(testiInView)}`}>
-              <span className="flex h-6 w-6 items-center justify-center rounded-[7px] bg-brand-mint/20 text-brand-800">
-                <ChatBubbleIcon className="h-3.5 w-3.5" />
-              </span>
+              
               Testimonials
             </div>
             <h2
