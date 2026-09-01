@@ -1,20 +1,6 @@
 import useInView from '../hooks/useInView'
-
-const NODES = [
-  { key: 'n1', type: 'plant', left: '8.49%', top: '72.5%' },
-  { key: 'n2', type: 'solid', left: '25.47%', top: '37.5%', year: 2020, label: 'Founded' },
-  { key: 'n3', type: 'light', left: '49.06%', top: '77.5%', year: 2021, label: '15 startups invested', size: 'lg' },
-  { key: 'n4', type: 'light', left: '71.7%', top: '40%', year: 2022, label: 'Raised $50M', size: 'md' },
-  { key: 'n5', type: 'light', left: '91.51%', top: '72.5%', year: 2024, label: '300% Growth', size: 'sm' },
-]
-
-const PlantIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" className="h-[52%] w-[52%]">
-    <path d="M12 21V11" stroke="#9fd6ab" strokeWidth="1.6" strokeLinecap="round" />
-    <path d="M12 12c0-3.5 2.5-6 6-6-0.5 3.5-2.8 6-6 6Z" fill="#7fc98d" />
-    <path d="M12 15c0-3.2-2.3-5.6-5.5-5.8C6.8 12.6 9 15 12 15Z" fill="#5fae72" />
-  </svg>
-)
+import { PlantIcon } from '../constants/icons'
+import { NODES } from '../constants/data'
 
 const nodeSizeClass = {
   lg: 'h-[clamp(120px,14vw,164px)] w-[clamp(120px,14vw,164px)]',
@@ -146,11 +132,7 @@ const AboutUs = () => {
               style={{ transitionDelay: `${i * 0.15}s` }}
             >
               {node.type === 'plant' ? (
-                <svg viewBox="0 0 24 24" fill="none" className="h-1/2 w-1/2">
-                  <path d="M12 21V11" stroke="#9fd6ab" strokeWidth="1.6" strokeLinecap="round" />
-                  <path d="M12 12c0-3.5 2.5-6 6-6-0.5 3.5-2.8 6-6 6Z" fill="#7fc98d" />
-                  <path d="M12 15c0-3.2-2.3-5.6-5.5-5.8C6.8 12.6 9 15 12 15Z" fill="#5fae72" />
-                </svg>
+                <PlantIcon className="h-1/2 w-1/2" />
               ) : (
                 <>
                   <div className="text-lg leading-none font-bold tracking-[-0.01em]">{node.year}</div>

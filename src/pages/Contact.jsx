@@ -1,79 +1,10 @@
 import { useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { MailIcon, PhoneIcon, CheckCircleIcon, PinIcon, CheckmarkGlyph } from '../constants/icons'
+import { BENEFITS, LOCATIONS } from '../constants/data'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-const MailIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path
-      d="M3 6l9 7 9-7M3 6v12h18V6M3 6h18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const PhoneIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path
-      d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const CheckIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.4" />
-    <polyline
-      points="7.5,12.3 10.3,15 16.5,8.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const PinIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M12 22s7-7.4 7-13a7 7 0 10-14 0c0 5.6 7 13 7 13z" fill="currentColor" />
-    <circle cx="12" cy="9" r="2.4" fill="white" />
-  </svg>
-)
-
-const CheckmarkGlyph = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <polyline
-      points="4,13 9,18 20,6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const BENEFITS = [
-  'Improve usability of your product',
-  'Engage users at a higher level and outperform your competition',
-  'Reduce the onboarding time and improve sales',
-  'Balance user needs with your business goal',
-]
-
-const LOCATIONS = [
-  { label: 'USA', lines: ['280 W, 17th street', '4th floor, Flat no: 407', 'New York NY, 10018'] },
-  { label: 'India', lines: ['Plot No 8-2-601/p/15ms', 'Banjara Hills, Road No 10', 'Hyderabad, 500034'] },
-]
 
 const inputCls =
   'w-full rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-[15px] text-brand-950 placeholder:text-gray-400 transition-all duration-200 hover:border-gray-300 focus:border-brand-950 focus:outline-none focus:ring-4 focus:ring-brand-950/[0.07]'
@@ -276,7 +207,7 @@ const Contact = () => {
               {BENEFITS.map((text) => (
                 <li key={text} className="flex items-start gap-3.5 text-[15.5px] leading-relaxed text-brand-950">
                   <span className="mt-px flex h-[22px] w-[22px] shrink-0 items-center justify-center text-brand-mint">
-                    <CheckIcon className="h-4 w-4" />
+                    <CheckCircleIcon className="h-4 w-4" />
                   </span>
                   {text}
                 </li>

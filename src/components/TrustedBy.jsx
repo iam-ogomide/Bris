@@ -1,60 +1,11 @@
-const LOGOS = [
-  {
-    name: 'Logoipsum',
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
-        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.6" />
-      </>
-    ),
-  },
-  {
-    name: 'Logoipsum',
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M12 4v3M12 17v3M4 12h3M17 12h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      </>
-    ),
-  },
-  {
-    name: 'Logoipsum',
-    icon: <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />,
-  },
-  {
-    name: 'Logoipsum',
-    icon: (
-      <>
-        <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" />
-        <path
-          d="M8 20h8M9 10l3 3 3-5"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </>
-    ),
-  },
-  {
-    name: 'Logoipsum',
-    icon: (
-      <>
-        <path d="M4 12a8 8 0 1 1 3 6.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M4 17v-4h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </>
-    ),
-  },
-]
+import { LOGOS } from '../constants/data'
 
 const LogoItem = ({ logo, hidden }) => (
   <div
     className="flex items-center gap-2.5 text-[21px] font-semibold tracking-[-0.01em] whitespace-nowrap text-gray-400 opacity-75"
     aria-hidden={hidden || undefined}
   >
-    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 shrink-0">
-      {logo.icon}
-    </svg>
+    <logo.icon className="h-6 w-6 shrink-0" />
     {logo.name}
   </div>
 )

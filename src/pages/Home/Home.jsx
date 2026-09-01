@@ -9,6 +9,8 @@ import TimelineSection from '../../components/TimelineSection'
 import Footer from '../../components/Footer'
 import useInView from '../../hooks/useInView'
 import heroBg from '../../assets/h7.jpg'
+import { ArrowUpRightIcon } from '../../constants/icons'
+import { NEWS_POSTS } from '../../constants/data'
 
 const btnBase =
   'group inline-flex cursor-pointer items-center gap-2 rounded-full border-none text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2'
@@ -16,71 +18,6 @@ const btnBase =
 const Arrow = () => (
   <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
 )
-
-const ArrowUpRightIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M7 17L17 7M17 7H9M17 7V15" />
-  </svg>
-)
-
-const NEWS_POSTS = [
-  {
-    tag: 'Investment',
-    date: 'May 31',
-    img: 'https://picsum.photos/id/1043/500/620',
-    title: (
-      <>
-        IMPACT Synergy is an
-        <br />
-        <b className="font-bold">AI powered</b> investment
-        <br />
-        banking solution
-      </>
-    ),
-  },
-  {
-    tag: 'AI Solutions',
-    date: 'May 31',
-    img: 'https://picsum.photos/id/1040/500/620',
-    title: (
-      <>
-        IMPACT Synergy is an
-        <br />
-        AI powered
-        <br />
-        <b className="font-bold">investment banking</b>
-      </>
-    ),
-  },
-  {
-    tag: 'Company',
-    date: 'May 31',
-    img: 'https://picsum.photos/id/1048/500/620',
-    title: (
-      <>
-        IMPACT Synergy is an
-        <br />
-        AI powered investment
-        <br />
-        banking solution
-      </>
-    ),
-  },
-  {
-    tag: 'Focus',
-    date: 'May 31',
-    img: 'https://picsum.photos/id/1035/500/620',
-    title: (
-      <>
-        IMPACT Synergy is an
-        <br />
-        AI powered <b className="font-bold">investment</b>
-        <br />
-        <b className="font-bold">banking</b> solution
-      </>
-    ),
-  },
-]
 
 const Home = () => {
   const [statValue, setStatValue] = useState(0)

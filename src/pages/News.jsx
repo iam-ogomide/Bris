@@ -3,231 +3,21 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import useInView from '../hooks/useInView'
 import heroImg1 from '../assets/h1.jpg'
-import heroImg2 from '../assets/h2.jpg'
 import heroImg3 from '../assets/h3.jpg'
-import heroImg4 from '../assets/h4.jpg'
-import heroImg5 from '../assets/h5.jpg'
-import heroImg6 from '../assets/h6.jpg'
 import heroImg7 from '../assets/h7.jpg'
-
-const ArrowUpRightIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M7 17L17 7M17 7H9M17 7V15" />
-  </svg>
-)
-
-const FlameIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path
-      d="M12 23c-4.4 0-8-3.4-8-7.5 0-3 1.8-5 3-7 .3 2 1.5 3 2.5 2-.5-3 1-5.5 3.5-7.5-.5 2.5 0 4 1.5 5 2 1.7 3.5 4 3.5 7 0 4.1-3.6 7.5-8 7.5z"
-      fill="currentColor"
-    />
-  </svg>
-)
-
-const PlayIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
-  </svg>
-)
-
-const XIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className={className}>
-    <line x1="6" y1="6" x2="18" y2="18" />
-    <line x1="6" y1="18" x2="18" y2="6" />
-  </svg>
-)
-
-const CalendarIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-    <rect x="3" y="5" width="18" height="16" rx="3" />
-    <line x1="3" y1="10" x2="21" y2="10" />
-    <line x1="8" y1="3" x2="8" y2="7" />
-    <line x1="16" y1="3" x2="16" y2="7" />
-  </svg>
-)
-
-const ArrowLeftIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <line x1="19" y1="12" x2="5" y2="12" />
-    <polyline points="12 19 5 12 12 5" />
-  </svg>
-)
-
-const ArrowRightIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
-  </svg>
-)
-
-const TwitterIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M18.9 2H22l-7.6 8.7L23.3 22H16.6l-5.2-6.8L5.4 22H2.3l8.1-9.3L1 2h6.9l4.7 6.2L18.9 2Zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20Z" />
-  </svg>
-)
-
-const LinkedInIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9Z" />
-  </svg>
-)
-
-const LinkIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1" />
-    <path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1" />
-  </svg>
-)
-
-const CheckIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-)
-
-const CARD1 = {
-  category: 'Portfolio',
-  title: 'Our Portfolio Co. Closes $40M Series B',
-  body: "One of our portfolio companies just closed a $40M Series B led by a top-tier growth fund, with participation from three of our earliest co-investors. The round values the company at nearly 4x its Series A mark — a reflection of eighteen months of disciplined execution rather than a market re-rating.",
-  bodyExtra: 'We backed the founders at pre-seed and have stayed close to the business through every stage since. This raise gives them the runway to double down on enterprise distribution and build out the team ahead of a planned international launch next year.',
-}
-
-const CARD2 = {
-  category: 'Insights',
-  title: 'What We Look For in a Seed-Stage Founder',
-  desc: "Conviction at the earliest stage rarely comes from a polished deck. It comes from how founders think under pressure, how fast they learn, and whether the market actually wants what they're building ...",
-  body: "Conviction at the earliest stage rarely comes from a polished deck. It comes from how founders think under pressure, how fast they learn, and whether the market actually wants what they're building.",
-  bodyExtra: "Over a hundred seed investments in, the pattern holds: the founders who win are relentlessly specific about the problem, brutally honest about what isn't working, and quick to change their mind when the evidence says to.",
-}
-
-const SUB_ARTICLES = [
-  {
-    category: 'Market Insights',
-    title: 'How We Think About Market Timing',
-    body: 'Timing is the variable founders can least control and most obsess over. We look at adoption curves, not calendar years, when we underwrite a market.',
-    bodyExtra: "The best entries we've backed rode a shift that was already underway, not one they were betting would arrive.",
-  },
-  {
-    category: 'Founder Resources',
-    title: "A Founder's Guide to Term Sheets",
-    body: 'A term sheet is a negotiation, not a formality. Understanding which terms are standard and which are worth pushing back on can save a founder real ownership and control down the line.',
-    bodyExtra: "We've put together the clauses we see founders misread most often, from liquidation preference stacking to pro-rata rights.",
-  },
-]
-
-const CARD3 = {
-  category: 'Market',
-  title: 'Why Late-Stage Valuations Are Resetting',
-  body: 'Late-stage valuations are coming back down to earth as growth investors re-price risk against a higher cost of capital. Multiples that felt routine in 2021 now require real proof of durable, efficient growth.',
-  bodyExtra: 'For founders, that means the metrics that matter have shifted from growth-at-any-cost to net revenue retention, payback period, and a credible path to profitability.',
-}
-
-const VIDEO = {
-  title: 'Inside the Round: A Conversation With Our Managing Partner',
-  embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-}
-
-const TAGS = ['Fundraising', 'Portfolio', 'Market Insights', 'Exits', 'Talent', 'Regulation', 'Press', 'Podcast']
-
-const BLOG_POSTS = [
-  {
-    id: 1,
-    category: 'Operations',
-    date: '02 Jul 2025',
-    readTime: '6 min read',
-    title: 'The Playbook Behind Our Portfolio Reviews',
-    excerpt: 'How we run quarterly check-ins that catch problems early, instead of after the board deck is already finalized.',
-    image: heroImg2,
-    author: 'Grace Adeyemi',
-    role: 'Principal, Portfolio Ops',
-    body: [
-      "A quarterly review is only useful if it surfaces problems before they show up in the numbers. We built ours around a short, structured set of questions rather than a slide template, so founders spend their prep time thinking instead of formatting.",
-      'The format stays consistent: what changed since last quarter, what nearly broke, and what the team needs from us specifically. That last part matters — a review that ends without a concrete ask from either side usually meant nothing got said.',
-      "We keep the loop tight between reviews too. A monthly async note beats a perfect quarterly deck, because it means the review is a checkpoint, not the first time we're hearing about a problem.",
-    ],
-  },
-  {
-    id: 2,
-    category: 'Security',
-    date: '25 Jun 2025',
-    readTime: '7 min read',
-    title: 'Securing the Data Room During Diligence',
-    excerpt: 'Most diligence leaks trace back to access controls, not a flaw in whatever tool is hosting the data room.',
-    image: heroImg4,
-    author: 'Daniel Okoro',
-    role: 'Platform & Security Lead',
-    body: [
-      'A data room opened for diligence is, for a few weeks, the most sensitive collection of documents a company has ever assembled in one place. Most leaks trace back to who had access and for how long, not a flaw in the platform hosting it.',
-      'Expiring, role-based access beats a single shared link every time. Give each counterparty their own credentials, scope what they can see to their stage of diligence, and revoke access the moment a round closes or falls through.',
-      'Treat the access log as part of the deal record. Knowing exactly who viewed what, and when, has saved more than one founder an awkward conversation after a process leaked to a competitor.',
-    ],
-  },
-  {
-    id: 3,
-    category: 'Strategy',
-    date: '10 Jun 2025',
-    readTime: '5 min read',
-    title: 'Choosing the Right Cap Table Tool',
-    excerpt: 'The right tool fits how your team already works, not the one with the flashiest feature list.',
-    image: heroImg5,
-    author: 'Amara Chukwu',
-    role: 'Product Strategist',
-    body: [
-      'Every cap table tool promises to remove the spreadsheet headaches of fundraising. Before switching, get specific about the actual failure mode you are trying to fix, and what "fixed" looks like in practice.',
-      'The migration cost rarely shows up on the pricing page. Factor in the time to reconcile historical grants, the learning curve for whoever runs payroll and equity, and the cost of switching again if the tool does not scale with headcount.',
-      'The safest long-term bet is usually the option your finance and legal counsel already know how to use, rather than the newest platform with the best onboarding demo.',
-    ],
-  },
-  {
-    id: 4,
-    category: 'Infrastructure',
-    date: '25 Jun 2025',
-    readTime: '6 min read',
-    title: 'Building Infrastructure That Scales With You',
-    excerpt: 'The right hosting choice depends less on price and more on how much control your stage actually needs.',
-    image: heroImg6,
-    author: 'Tobenna Eze',
-    role: 'Infrastructure Advisor',
-    body: [
-      'Shared hosting, a single cloud VM, and a fully managed platform all solve the same basic problem in very different ways. The right choice depends less on price and more on how much control and scale your current stage actually needs.',
-      'Look past the advertised uptime number and read the SLA itself. Understand what counts as downtime, how credits are calculated, and how quickly support actually responds when something breaks at 2am before a demo.',
-      'Budget for the traffic you will have after a good launch, not the traffic you have today. A setup that is perfect for your current load can become your biggest bottleneck the moment something goes well.',
-    ],
-  },
-  {
-    id: 5,
-    category: 'Culture',
-    date: '25 Jun 2025',
-    readTime: '8 min read',
-    title: 'What a Founder-First Culture Actually Looks Like',
-    excerpt: 'It shows up in how fast a fund answers a hard question, not in the language on its website.',
-    image: heroImg1,
-    author: 'Ifeoma Bello',
-    role: 'Engineering Manager, Portfolio',
-    body: [
-      '"Founder-first" is one of the most overused phrases in venture, and one of the easiest to say without meaning. The real test is how a fund behaves when a founder brings bad news early, or asks a question they are afraid sounds naive.',
-      'The clearest signal we look for in ourselves is response time on hard questions, not easy ones. Any partner can turn around a warm intro quickly. Fewer will give a straight, fast answer when a founder asks whether the next round is at risk.',
-      'Culture compounds the same way a product does. Every unhurried, honest conversation with a founder in a hard quarter makes the next one easier, for us and for them.',
-    ],
-  },
-  {
-    id: 6,
-    category: 'Operations',
-    date: '10 Jun 2025',
-    readTime: '7 min read',
-    title: 'Getting Ops Ready Before Your Series A',
-    excerpt: 'The operational gaps that felt fine at ten people become the first thing diligence finds at fifty.',
-    image: heroImg3,
-    author: 'Daniel Okoro',
-    role: 'Platform & Security Lead',
-    body: [
-      'The operational shortcuts that felt harmless at ten people are usually the first thing a Series A diligence process finds at fifty. Contracts in someone\'s inbox, access nobody has audited in a year, a finance stack held together by one spreadsheet.',
-      'Real-time visibility into spend, access, and infrastructure turns that slow drift into something you can actually see. Once a small gap is visible, it is cheap to fix. Once diligence finds it, it is a delay on your term sheet.',
-      'You do not need to fix everything before you raise. Prioritize the gaps that carry real legal or security risk, and be ready to speak plainly about the rest — investors trust founders who already know where the bodies are buried.',
-    ],
-  },
-]
+import {
+  ArrowUpRightIcon,
+  PlayIcon,
+  XIcon,
+  CalendarIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  TwitterIcon,
+  LinkedInIcon,
+  LinkIcon,
+  CheckIcon,
+} from '../constants/icons'
+import { CARD1, CARD2, CARD3, SUB_ARTICLES, VIDEO, TAGS, BLOG_POSTS } from '../constants/data'
 
 const cardShadow = 'transition-shadow duration-[400ms] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]'
 
@@ -243,7 +33,6 @@ const News = () => {
 
   const [blogGridRef, blogGridInView] = useInView(0.1)
   const blogSectionRef = useRef(null)
-  const isFirstBlogRender = useRef(true)
   const copyTimeoutRef = useRef(null)
   const [selectedPostId, setSelectedPostId] = useState(null)
   const [blogPage, setBlogPage] = useState(1)
@@ -276,8 +65,14 @@ const News = () => {
     showToast(`Filtered by: ${tag}`)
   }
 
-  const openPost = (id) => setSelectedPostId(id)
-  const closePost = () => setSelectedPostId(null)
+  const openPost = (id) => {
+    setSelectedPostId(id)
+    blogSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+  const closePost = () => {
+    setSelectedPostId(null)
+    blogSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   const copyPostLink = () => {
     navigator.clipboard?.writeText(window.location.href).catch(() => {})
@@ -299,14 +94,6 @@ const News = () => {
       clearTimeout(copyTimeoutRef.current)
     }
   }, [])
-
-  useEffect(() => {
-    if (isFirstBlogRender.current) {
-      isFirstBlogRender.current = false
-      return
-    }
-    blogSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [selectedPostId])
 
   const reveal = () =>
     `${cardShadow} transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${

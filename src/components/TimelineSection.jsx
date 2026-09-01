@@ -1,45 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import useInView from '../hooks/useInView'
-
-const MILESTONES = [
-  {
-    year: 2014,
-    title: 'The second round of investment secured, expanding the founding team.',
-    tag: 'Investments: 2',
-  },
-  { year: 2015, title: 'First product launch in the Omani market, reaching 10,000 users.', tag: 'Product Launch' },
-  {
-    year: 2016,
-    title: 'Series A funding closed. Partnership with regional distributors formed.',
-    tag: 'Series A · $4.2M',
-  },
-  { year: 2017, title: 'Expanded operations to three new markets across the Gulf.', tag: 'Expansion · 3 markets' },
-  {
-    year: 2018,
-    title: 'Reached 100,000 active users. Infrastructure scaled to match demand.',
-    tag: 'Milestone · 100K users',
-  },
-  { year: 2019, title: 'Series B funding round. New engineering hub opened in Muscat.', tag: 'Series B · $18M' },
-  {
-    year: 2020,
-    title: 'Pivoted to hybrid model during global disruption. Revenue grew 38%.',
-    tag: 'Resilience · +38% revenue',
-  },
-]
+import { TimelineChevronLeftIcon, TimelineChevronRightIcon } from '../constants/icons'
+import { MILESTONES } from '../constants/data'
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-const ChevronLeft = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-    <polyline points="15 18 9 12 15 6" />
-  </svg>
-)
-const ChevronRight = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-    <polyline points="9 18 15 12 9 6" />
-  </svg>
-)
 
 const navBtnClass =
   'flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-brand-mint/12 bg-[#0d211f] text-white/45 transition-all duration-250 hover:border-brand-mint/35 hover:bg-brand-mint/8 hover:text-brand-mint hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:border-brand-mint/12 disabled:hover:bg-[#0d211f] disabled:hover:text-white/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-mint focus-visible:outline-offset-2'
@@ -167,7 +132,7 @@ const TimelineSection = () => {
 
           <div className="absolute top-0 right-0 flex gap-2">
             <button onClick={() => goTo(activeIndex - 1)} disabled={activeIndex === 0} aria-label="Previous year" className={navBtnClass}>
-              <ChevronLeft />
+              <TimelineChevronLeftIcon />
             </button>
             <button
               onClick={() => goTo(activeIndex + 1)}
@@ -175,7 +140,7 @@ const TimelineSection = () => {
               aria-label="Next year"
               className={navBtnClass}
             >
-              <ChevronRight />
+              <TimelineChevronRightIcon />
             </button>
           </div>
         </div>

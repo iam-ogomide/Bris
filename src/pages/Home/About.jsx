@@ -8,134 +8,8 @@ import h2 from '../../assets/h2.jpg'
 import h3 from '../../assets/h3.jpg'
 import h6 from '../../assets/h6.jpg'
 import h7 from '../../assets/h7.jpg'
-
-const ArrowIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
-  </svg>
-)
-
-const ChevronIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <polyline points="9 6 15 12 9 18" />
-  </svg>
-)
-
-const ValueIcons = {
-  conviction: (
-    <path d="M12 21s-7-4.4-9.5-9C.7 8.3 2.6 4 6.6 4c2 0 3.6 1.1 4.4 2.6C11.8 5.1 13.4 4 15.4 4c4 0 5.9 4.3 4.1 8-2.5 4.6-9.5 9-9.5 9Z" />
-  ),
-  insight: (
-    <>
-      <path d="M3 3v18h18" />
-      <path d="M7 15l4-4 3 3 5-6" />
-    </>
-  ),
-  alignment: (
-    <>
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="12" cy="12" r="5" />
-      <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
-    </>
-  ),
-  longterm: (
-    <>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3.5 2" />
-    </>
-  ),
-}
-
-const VALUES = [
-  { key: 'conviction', title: 'Conviction', desc: 'We back what we believe in, and stay the course even when markets don’t.' },
-  { key: 'insight', title: 'Insight-driven', desc: 'Every decision is grounded in rigorous analysis and firsthand operating experience.' },
-  { key: 'alignment', title: 'Alignment', desc: 'We structure every partnership so our incentives sit right next to our founders’.' },
-  { key: 'longterm', title: 'Long-term thinking', desc: 'We’re building portfolios and relationships that are designed to compound over decades.' },
-]
-
-const BACKERS = [
-  'Meridian Capital',
-  'Anchorpoint',
-  'Solstice Partners',
-  'Northbridge',
-  'Vantage Point',
-  'Sterling & Co',
-  'Crestview',
-  'Beacon Group',
-]
-
-const TEAM = [
-  { name: 'Mei Lin', role: 'Lead Designer', img: 'https://i.pravatar.cc/300?img=47' },
-  { name: 'Bali Gee', role: 'Co-Founder', img: 'https://i.pravatar.cc/300?img=32' },
-  { name: 'Marcus Reed', role: 'Creative Director', img: 'https://i.pravatar.cc/300?img=13' },
-  { name: 'Sora Kim', role: 'Head of Marketing', img: 'https://i.pravatar.cc/300?img=44' },
-  { name: 'Priya Nair', role: 'Product Lead', img: 'https://i.pravatar.cc/300?img=45' },
-  { name: 'Oskar Lund', role: 'Engineering Lead', img: 'https://i.pravatar.cc/300?img=59' },
-  { name: 'Claire Voss', role: 'Operations', img: 'https://i.pravatar.cc/300?img=49' },
-]
-
-const TESTIMONIALS = [
-  {
-    quote: 'BRIS didn’t just write a check. They gave us the strategic capital and network to scale with confidence.',
-    name: 'Diana Mounter',
-    role: 'CEO, Novarik',
-    img: 'https://i.pravatar.cc/100?img=22',
-  },
-  {
-    quote: 'Their diligence was rigorous, but never slow. We closed our round in weeks, not months.',
-    name: 'James Anderson',
-    role: 'Founder, BrightLedger',
-    img: 'https://i.pravatar.cc/100?img=54',
-  },
-  {
-    quote: 'What sets them apart is how they show up after the term sheet is signed. True operating partners.',
-    name: 'Matthew Brooks',
-    role: 'Co-Founder, Amsterdam Labs',
-    img: 'https://i.pravatar.cc/100?img=8',
-  },
-  {
-    quote: 'They understood our market better than most operators we’d met. That insight shaped our whole strategy.',
-    name: 'Paul Smith',
-    role: 'Creative Director, Luminous',
-    img: 'https://i.pravatar.cc/100?img=36',
-  },
-  {
-    quote: 'Patient, disciplined capital that thinks in years, not quarters. Exactly what we needed at our stage.',
-    name: 'David Mitchell',
-    role: 'VP of Sales, ProLine',
-    img: 'https://i.pravatar.cc/100?img=67',
-  },
-  {
-    quote: 'Board meetings with BRIS feel like working sessions with a co-founder, not a check-in with an investor.',
-    name: 'William Scott',
-    role: 'Head of Product, Atlantic',
-    img: 'https://i.pravatar.cc/100?img=15',
-  },
-]
-
-const FAQS = [
-  {
-    q: 'What stage companies do you invest in?',
-    a: 'We typically lead or co-lead rounds from seed through growth stage, writing initial checks between $500K and $15M depending on the opportunity and follow-on capacity for the companies we believe in most.',
-  },
-  {
-    q: 'What happens after you commit capital?',
-    a: 'We move quickly into onboarding, introducing you to our network of operators, customers, and follow-on investors, and stay closely involved through board seats or observer rights.',
-  },
-  {
-    q: 'Do you take board seats?',
-    a: 'For most lead investments, yes. We believe governance built on trust and consistent involvement leads to better outcomes for founders and investors alike.',
-  },
-  {
-    q: 'Can portfolio companies raise from other investors?',
-    a: 'Absolutely. We regularly co-invest alongside other funds and encourage founders to build a syndicate that brings the most value to the business.',
-  },
-  {
-    q: 'What do I need to submit a pitch?',
-    a: 'A deck and a short note on your traction and vision is enough to start the conversation. We’ll ask the right questions to fill in the gaps from there.',
-  },
-]
+import { ArrowRightBoldIcon, ChevronIcon, ChatBubbleIcon } from '../../constants/icons'
+import { VALUES, BACKERS, TEAM, TESTIMONIALS, FAQS } from '../../constants/data'
 
 const revealCls = (inView) =>
   `transition-all duration-700 ease-out ${inView ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`
@@ -280,7 +154,7 @@ const About = () => {
               >
                 Meet our team
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-brand-950 transition-transform duration-300">
-                  <ArrowIcon className="h-4 w-4" />
+                  <ArrowRightBoldIcon className="h-4 w-4" />
                 </span>
               </a>
             </div>
@@ -327,17 +201,7 @@ const About = () => {
                 className={revealCls(valuesInView)}
                 style={{ transitionDelay: valuesInView ? `${150 + i * 90}ms` : '0ms' }}
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mb-4 h-6 w-6 text-brand-800"
-                >
-                  {ValueIcons[v.key]}
-                </svg>
+                <v.Icon className="mb-4 h-6 w-6 text-brand-800" />
                 <h4 className="mb-3 text-[1.08rem] font-semibold text-brand-950">{v.title}</h4>
                 <p className="text-[0.98rem] leading-[1.6] text-gray-500">{v.desc}</p>
               </div>
@@ -471,9 +335,7 @@ const About = () => {
           <div className="mb-14 text-center">
             <div className={`inline-flex items-center gap-2.5 text-[0.95rem] font-medium text-brand-950 ${revealCls(testiInView)}`}>
               <span className="flex h-6 w-6 items-center justify-center rounded-[7px] bg-brand-mint/20 text-brand-800">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
+                <ChatBubbleIcon className="h-3.5 w-3.5" />
               </span>
               Testimonials
             </div>
@@ -552,7 +414,7 @@ const About = () => {
                 className="mt-24 inline-flex items-center gap-2.5 rounded-[10px] bg-brand-950 px-5 py-3.5 text-[0.95rem] font-semibold text-white transition-all duration-250 hover:-translate-y-0.5 hover:bg-brand-900"
               >
                 Contact Now
-                <ArrowIcon className="h-[15px] w-[15px]" />
+                <ArrowRightBoldIcon className="h-[15px] w-[15px]" />
               </Link>
             </div>
           </div>

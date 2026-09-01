@@ -1,18 +1,7 @@
 import { useState } from 'react'
 import useInView from '../hooks/useInView'
-
-const ITEMS = [
-  { title: 'Guidance Grounded In Real-World Experience' },
-  { title: 'A Partner Beyond Just Capital' },
-  { title: 'Resilient and Relentless Facing Diverse Challenges' },
-  { title: 'A Foundation Built on Lasting Trust' },
-]
-
-const PlayIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
-    <path d="M8 5v14l11-7L8 5Z" fill="currentColor" />
-  </svg>
-)
+import { PlayIcon } from '../constants/icons'
+import { ITEMS } from '../constants/data'
 
 const OperatorsAccordion = () => {
   const [headerRef, headerInView] = useInView(0.2)
@@ -75,7 +64,7 @@ const OperatorsAccordion = () => {
                       active ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
                     }`}
                   >
-                    <PlayIcon />
+                    <PlayIcon className="h-3.5 w-3.5" />
                   </span>
                 </button>
               </div>

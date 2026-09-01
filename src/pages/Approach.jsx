@@ -4,23 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import useInView from '../hooks/useInView'
 import ctaImg from '../assets/h4.jpg'
-
-const ArrowIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M5 12h14M13 5l7 7-7 7" />
-  </svg>
-)
-
-const PlusMinus = ({ open }) => (
-  <span className="relative block h-6 w-6 shrink-0">
-    <span className="absolute top-1/2 left-1/2 h-px w-3.5 -translate-x-1/2 -translate-y-1/2 bg-brand-950" />
-    <span
-      className={`absolute top-1/2 left-1/2 h-3.5 w-px -translate-x-1/2 -translate-y-1/2 bg-brand-950 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-        open ? 'rotate-90' : 'rotate-0'
-      }`}
-    />
-  </span>
-)
+import { ArrowNextIcon, PlusMinusIcon } from '../constants/icons'
+import { PILLARS, FOCUS_AREAS, STATS } from '../constants/data'
 
 const StatNumber = ({ value, prefix, suffix, active }) => {
   const [display, setDisplay] = useState(0)
@@ -57,88 +42,6 @@ const StatNumber = ({ value, prefix, suffix, active }) => {
     </div>
   )
 }
-
-const PILLARS = [
-  {
-    num: '01',
-    title: 'Conviction over consensus',
-    body: 'We back founders early, before the market has agreed the opportunity is real, and we do the underwriting ourselves rather than waiting for a syndicate to validate it.',
-  },
-  {
-    num: '02',
-    title: 'Downside discipline',
-    body: 'Capital goes out in stages, with reserves held back for the founders who earn them. We protect the downside so conviction can run on the upside.',
-  },
-  {
-    num: '03',
-    title: 'Alignment, not pressure',
-    body: 'We raise from long-term partners who let us hold, not push us to exit early. Our incentives sit next to our founders’, for as long as the company needs them to.',
-  },
-]
-
-const FOCUS_AREAS = [
-  {
-    name: 'Pre-Seed & Seed',
-    summary: 'First checks into founders with a sharp insight and an unfair advantage, before there is a deck to validate it.',
-    body: 'We write the first institutional check more often than not, working alongside founders to pressure-test the thesis, build out the founding team, and get to a fundable Series A. Check sizes stay small enough that conviction, not consensus, drives the decision.',
-    tags: ['First checks', 'Founding team build-out', 'Thesis development'],
-  },
-  {
-    name: 'Series A',
-    summary: 'Doubling down where early signal has turned into real, repeatable traction.',
-    body: 'By Series A we usually know the team well, having already been in the room for a year. We lead or co-lead rounds where usage or revenue is compounding, and where the next eighteen months are about scaling what already works.',
-    tags: ['Lead & co-lead', 'Go-to-market scaling', 'Board seats'],
-  },
-  {
-    name: 'Growth Equity',
-    summary: 'Later-stage capital for portfolio companies extending their lead into a category-defining position.',
-    body: 'Reserved primarily for our own portfolio, growth checks fund the expansion moves — new markets, adjacent products, larger enterprise motions — once the core business has proven it can compound efficiently.',
-    tags: ['Follow-on capital', 'International expansion', 'M&A support'],
-  },
-  {
-    name: 'Fintech & Infrastructure',
-    summary: 'The rails powering payments, lending, and financial access across emerging and frontier markets.',
-    body: 'From credit infrastructure to embedded finance, we look for teams solving the plumbing problems that unlock a much larger addressable market once solved.',
-    tags: ['Payments', 'Credit infrastructure', 'Embedded finance'],
-  },
-  {
-    name: 'AI & Applied ML',
-    summary: 'Applied intelligence layered into real workflows, not model research for its own sake.',
-    body: 'We favor teams that treat the model as an implementation detail and the workflow it replaces or upgrades as the actual product — where defensibility comes from data and distribution, not the underlying architecture.',
-    tags: ['Vertical AI', 'Workflow automation', 'Data moats'],
-  },
-  {
-    name: 'Vertical SaaS',
-    summary: 'Deep, opinionated software for industries the horizontal players have never bothered to serve well.',
-    body: 'The best vertical software becomes the system of record for an entire industry. We look for founders with genuine domain expertise building the tool they once needed themselves.',
-    tags: ['System of record', 'Domain expertise', 'Land and expand'],
-  },
-  {
-    name: 'Consumer & Marketplaces',
-    summary: 'Products and platforms built around genuine behavioral insight, not growth-hacked engagement.',
-    body: 'We back consumer and marketplace businesses with a real supply-side or demand-side moat, and a founder who understands the underlying behavior well enough to build for it, not just around it.',
-    tags: ['Two-sided marketplaces', 'Retention-first growth', 'Community'],
-  },
-  {
-    name: 'Climate & Deep Tech',
-    summary: 'Capital-efficient bets on the hard problems in energy, materials, and industrial systems.',
-    body: 'Longer time horizons and bigger technical risk, underwritten with the same discipline we apply everywhere else — a credible path to unit economics, not just a compelling mission.',
-    tags: ['Energy transition', 'Industrial software', 'Hardware-enabled'],
-  },
-  {
-    name: 'Secondary & Opportunistic',
-    summary: 'Selective secondary positions in companies we already know well, when the price is right.',
-    body: 'Occasionally the best opportunity is a secondary stake in a company we have tracked for years but never had the allocation to lead. We move quickly when the terms and the company both make sense.',
-    tags: [],
-  },
-]
-
-const STATS = [
-  { value: 850, prefix: '$', suffix: 'M+', label: 'Assets under management' },
-  { value: 15, prefix: '', suffix: '+', label: 'Year track record' },
-  { value: 4, prefix: '', suffix: '', label: 'Offices worldwide' },
-  { value: 180, prefix: '', suffix: '+', label: 'Portfolio companies' },
-]
 
 const Approach = () => {
   const [openIndex, setOpenIndex] = useState(0)
@@ -231,7 +134,7 @@ const Approach = () => {
                       </h4>
                       <span className="text-sm text-gray-500">{f.summary}</span>
                     </div>
-                    <PlusMinus open={open} />
+                    <PlusMinusIcon open={open} />
                   </button>
 
                   <div
@@ -301,7 +204,7 @@ const Approach = () => {
             className="group inline-flex flex-none items-center gap-2.5 rounded-full bg-brand-mint px-7 py-4 text-[14.5px] font-semibold text-brand-950 transition-all duration-300 hover:gap-3.5 hover:bg-white"
           >
             Get in touch
-            <ArrowIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ArrowNextIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </div>
       </section>

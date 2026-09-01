@@ -1,39 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
-const NAV_LINKS = [
-  { label: 'Home', to: '/' },
-  { label: 'Investment Approach', to: '/approach' },
-  { label: 'Insights', to: '/insights' },
-]
+import { NavChevronDownIcon, BrandMarkIcon } from '../constants/icons'
+import { NAV_LINKS, ABOUT_ITEMS } from '../constants/data'
 
 const ABOUT_DROPDOWN_LABEL = 'About Us'
-
-const ABOUT_ITEMS = [
-  { label: 'About Us', to: '/about', description: 'Our story, mission, and team' },
-  { label: 'News', to: '/news', description: 'Announcements and press' },
-  { label: 'Careers', to: '/careers', description: 'Open roles and life at Bris' },
-]
 
 const btnBase =
   'group cursor-pointer items-center gap-2 rounded-full border-none text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2'
 
 const Arrow = () => (
   <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
-)
-
-const ChevronDown = ({ className = '' }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={`h-3 w-3 shrink-0 transition-transform duration-200 ${className}`}
-  >
-    <polyline points="6 9 12 15 18 9" />
-  </svg>
 )
 
 const Navbar = () => {
@@ -76,12 +52,7 @@ const Navbar = () => {
     <nav className="relative z-30 flex animate-[heroFadeDown_0.7s_ease_forwards] items-center justify-between gap-4 px-[18px] py-[18px] opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 min-[520px]:px-6 min-[520px]:py-[22px] min-[900px]:px-12 min-[900px]:py-7">
       <Link to="/" className="flex shrink-0 items-center gap-2.5 text-lg font-bold tracking-[-0.02em] text-white min-[520px]:text-xl">
         <span className="inline-flex h-[26px] w-[26px] shrink-0 items-center justify-center">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-            <rect x="2" y="2" width="9" height="9" rx="2" fill="white" />
-            <rect x="13" y="2" width="9" height="9" rx="2" fill="white" fillOpacity="0.5" />
-            <rect x="2" y="13" width="9" height="9" rx="2" fill="white" fillOpacity="0.5" />
-            <rect x="13" y="13" width="9" height="9" rx="2" fill="white" />
-          </svg>
+          <BrandMarkIcon color="white" />
         </span>
         Bris
       </Link>
@@ -107,7 +78,7 @@ const Navbar = () => {
             }`}
           >
             {ABOUT_DROPDOWN_LABEL}
-            <ChevronDown className={aboutOpen ? '-rotate-180' : ''} />
+            <NavChevronDownIcon className={aboutOpen ? '-rotate-180' : ''} />
           </button>
 
           <div
@@ -207,7 +178,7 @@ const Navbar = () => {
             }`}
           >
             {ABOUT_DROPDOWN_LABEL}
-            <ChevronDown className={mobileAboutOpen ? '-rotate-180' : ''} />
+            <NavChevronDownIcon className={mobileAboutOpen ? '-rotate-180' : ''} />
           </button>
 
           <div className={`grid transition-all duration-300 ${mobileAboutOpen ? 'grid-rows-[1fr] pb-3 opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>

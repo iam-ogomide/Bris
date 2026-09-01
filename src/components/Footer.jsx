@@ -1,51 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useInView from '../hooks/useInView'
-
-const EXPLORE_LINKS = ['Investment', 'Advisor', 'AI Solutions', 'Focus', 'Company', 'News']
-
-const ArrowUpRightIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M7 17L17 7M17 7H9M17 7V15" />
-  </svg>
-)
-
-const ChevronUpIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M12 19V5M5 12l7-7 7 7" />
-  </svg>
-)
-
-const InstagramIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.73 3.73 0 0 1-1.38-.9 3.73 3.73 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.24a6.6 6.6 0 1 0 0 13.2 6.6 6.6 0 0 0 0-13.2zm0 10.89a4.29 4.29 0 1 1 0-8.58 4.29 4.29 0 0 1 0 8.58zm7.02-11.14a1.54 1.54 0 1 1-3.08 0 1.54 1.54 0 0 1 3.08 0z" />
-  </svg>
-)
-
-const XIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M18.24 3H21l-6.5 7.43L22 21h-6.15l-4.82-6.3L5.6 21H3l7-8.02L2.5 3h6.3l4.36 5.77L18.24 3zm-1.08 16.17h1.53L7.9 4.74H6.26l10.9 14.43z" />
-  </svg>
-)
-
-const LinkedInIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
-  </svg>
-)
-
-const YoutubeIcon = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.5v-7l6.3 3.5-6.3 3.5z" />
-  </svg>
-)
-
-const SOCIALS = [
-  { Icon: InstagramIcon, label: 'Instagram' },
-  { Icon: XIcon, label: 'X' },
-  { Icon: LinkedInIcon, label: 'LinkedIn' },
-  { Icon: YoutubeIcon, label: 'YouTube' },
-]
+import { ArrowUpRightIcon, ChevronUpIcon, BrandMarkIcon } from '../constants/icons'
+import { EXPLORE_LINKS, SOCIALS } from '../constants/data'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
@@ -68,12 +25,7 @@ const Footer = () => {
           <div className="max-w-[620px] min-w-[280px] flex-1">
             <Link to="/" className="flex w-fit items-center gap-2.5 text-lg font-bold tracking-[-0.02em] text-brand-950">
               <span className="inline-flex h-[26px] w-[26px] shrink-0 items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                  <rect x="2" y="2" width="9" height="9" rx="2" fill="#0a1f1e" />
-                  <rect x="13" y="2" width="9" height="9" rx="2" fill="#0a1f1e" fillOpacity="0.5" />
-                  <rect x="2" y="13" width="9" height="9" rx="2" fill="#0a1f1e" fillOpacity="0.5" />
-                  <rect x="13" y="13" width="9" height="9" rx="2" fill="#0a1f1e" />
-                </svg>
+                <BrandMarkIcon />
               </span>
               Bris
             </Link>
