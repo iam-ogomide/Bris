@@ -155,7 +155,7 @@ const Approach = () => {
         <Navbar />
         <div className="mx-auto max-w-[1180px] px-6 pt-6 sm:px-8">
           <div className="mb-6 flex items-center gap-3 text-[13.5px] text-white/60">
-            <span className="h-px w-10 bg-brand-mint" />
+            {/* <span className="h-px w-10 bg-brand-mint" /> */}
             Our approach
           </div>
 

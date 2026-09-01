@@ -351,12 +351,12 @@ const News = () => {
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             />
 
-            <div
+            {/* <div
               title="Trending"
               className="absolute top-6 left-6 z-[5] flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/15 shadow-[0_8px_20px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-[400ms] group-hover:scale-110 group-hover:rotate-[15deg]"
             >
               <FlameIcon className="h-5 w-5 text-white" />
-            </div>
+            </div> */}
 
             <div className="absolute bottom-0 left-0 z-[5] max-w-[72%]">
               <div
