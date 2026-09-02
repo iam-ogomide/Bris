@@ -40,6 +40,7 @@ export const useScrollReveal = ({
   start = 'top 82%',
   ease = EASE,
   once = true,
+  onStart,
 } = {}) => {
   const ref = useRef(null)
 
@@ -51,6 +52,7 @@ export const useScrollReveal = ({
 
     if (prefersReducedMotion()) {
       gsap.set(targets.length ? targets : node, { opacity: 1, y: 0 })
+      onStart?.()
       return
     }
 
@@ -65,11 +67,13 @@ export const useScrollReveal = ({
           trigger: node,
           start,
           toggleActions: once ? 'play none none none' : 'play none none reverse',
+          onEnter: onStart,
         },
       })
     }, node)
 
     return () => ctx.revert()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [childSelector, y, duration, stagger, start, ease, once])
 
   return ref

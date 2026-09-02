@@ -175,7 +175,10 @@ const Home = () => {
             </Link>
           </div>
 
-          <div data-reveal className="group/hero relative aspect-[16/7.2] w-full cursor-pointer overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+          <div
+            data-reveal
+            className="group/hero relative aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] min-[560px]:aspect-[16/10] min-[900px]:aspect-[16/7.2]"
+          >
             <img
               src="https://picsum.photos/id/1015/1400/650"
               alt=""
@@ -188,7 +191,7 @@ const Home = () => {
             <div className="absolute top-[18px] right-[18px] flex h-10 w-10 items-center justify-center rounded-full bg-white/92 transition-all duration-400 group-hover/hero:rotate-45 group-hover/hero:scale-[1.06] group-hover/hero:bg-brand-mint">
               <ArrowUpRightIcon className="h-4 w-4 text-brand-950" />
             </div>
-            <div className="absolute right-[100px] bottom-[30px] left-8 translate-y-1.5 text-[clamp(20px,3vw,34px)] leading-[1.28] font-light text-white transition-transform duration-500 group-hover/hero:translate-y-0">
+            <div className="absolute right-6 bottom-5 left-6 translate-y-1.5 text-[clamp(18px,5vw,34px)] leading-[1.28] font-light text-white transition-transform duration-500 group-hover/hero:translate-y-0 min-[560px]:right-[100px] min-[560px]:bottom-[30px] min-[560px]:left-8 min-[560px]:text-[clamp(20px,3vw,34px)]">
               <b className="font-bold">IMPACT Synergy</b> is an <b className="font-bold">AI powered</b>
               <br />
               <b className="font-bold">investment banking</b> solution

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import { ArrowUpRightIcon, PlayIcon, XIcon, ArrowLeftIcon, ArrowRightIcon } from '../constants/icons'
 import { FEATURED, VIDEOS, CATEGORIES, NEWS_ITEMS } from '../constants/data'
 
@@ -17,8 +17,8 @@ const Insights = () => {
   const [page, setPage] = useState(1)
 
   const scrollerRef = useRef(null)
-  const [videosRef, videosInView] = useInView(0.1)
-  const [newsRef, newsInView] = useInView(0.05)
+  const videosRef = useScrollReveal({ childSelector: '[data-reveal]', y: 24, stagger: 0.08 })
+  const newsRef = useScrollReveal({ childSelector: null, y: 24 })
 
   const filteredItems = useMemo(
     () => (activeCategory === 'All Categories' ? NEWS_ITEMS : NEWS_ITEMS.filter((n) => n.cat === activeCategory)),
@@ -136,11 +136,7 @@ const Insights = () => {
 
       {/* Videos */}
       <section ref={videosRef} className="bg-white px-6 py-16 sm:px-8 sm:py-20">
-        <div
-          className={`mx-auto max-w-[1380px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            videosInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}
-        >
+        <div className="mx-auto max-w-[1380px]">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Watch</span>
@@ -175,10 +171,8 @@ const Insights = () => {
                 key={`${v.title}-${i}`}
                 type="button"
                 onClick={() => openVideo(v)}
-                style={{ transitionDelay: videosInView ? `${i * 60}ms` : '0ms' }}
-                className={`group w-[280px] shrink-0 text-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [scroll-snap-align:start] sm:w-[300px] ${
-                  videosInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                }`}
+                data-reveal
+                className="group w-[280px] shrink-0 text-left [scroll-snap-align:start] sm:w-[300px]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100">
                   <img
@@ -205,11 +199,7 @@ const Insights = () => {
 
       {/* News & Insights */}
       <section ref={newsRef} className="bg-gray-50 px-6 py-16 sm:px-8 sm:py-20">
-        <div
-          className={`mx-auto max-w-[1380px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            newsInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}
-        >
+        <div className="mx-auto max-w-[1380px]">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="mb-2 block text-sm font-semibold tracking-[0.04em] text-gray-400 uppercase">Latest</span>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import ctaImg from '../assets/h4.jpg'
 import { ArrowNextIcon, PlusMinusIcon } from '../constants/icons'
 import { PILLARS, FOCUS_AREAS, STATS } from '../constants/data'
@@ -45,9 +45,15 @@ const StatNumber = ({ value, prefix, suffix, active }) => {
 
 const Approach = () => {
   const [openIndex, setOpenIndex] = useState(0)
-  const [pillarsRef, pillarsInView] = useInView(0.15)
-  const [focusRef, focusInView] = useInView(0.1)
-  const [statsRef, statsInView] = useInView(0.3)
+  const [statsActive, setStatsActive] = useState(false)
+  const pillarsRef = useScrollReveal({ childSelector: '[data-reveal]', y: 24, stagger: 0.1 })
+  const focusRef = useScrollReveal({ childSelector: null, y: 24 })
+  const statsRef = useScrollReveal({
+    childSelector: '[data-reveal]',
+    y: 16,
+    stagger: 0.09,
+    onStart: () => setStatsActive(true),
+  })
 
   const toggleFocus = (i) => setOpenIndex((prev) => (prev === i ? -1 : i))
 
@@ -84,14 +90,8 @@ const Approach = () => {
           ref={pillarsRef}
           className="grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-[28px] border border-gray-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
-          {PILLARS.map((p, i) => (
-            <div
-              key={p.title}
-              style={{ transitionDelay: pillarsInView ? `${i * 100}ms` : '0ms' }}
-              className={`bg-white p-9 transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                pillarsInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-              }`}
-            >
+          {PILLARS.map((p) => (
+            <div key={p.title} data-reveal className="bg-white p-9">
               <div className="mb-5 font-serif-display text-sm text-brand-mint">{p.num}</div>
               <h3 className="mb-3 font-serif-display text-xl leading-snug font-medium text-brand-950">{p.title}</h3>
               <p className="text-[14.5px] leading-relaxed text-gray-500">{p.body}</p>
@@ -102,12 +102,7 @@ const Approach = () => {
 
       {/* Focus areas */}
       <section className="bg-gray-50 px-6 py-20 sm:px-8">
-        <div
-          ref={focusRef}
-          className={`mx-auto max-w-[1180px] transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            focusInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}
-        >
+        <div ref={focusRef} className="mx-auto max-w-[1180px]">
           <div className="mb-10 max-w-[60ch]">
             <h2 className="mb-3 font-serif-display text-3xl font-medium text-brand-950 sm:text-4xl">Where we invest</h2>
             <p className="text-[14.5px] text-gray-500">Nine focus areas spanning stage and sector. Select one to read more.</p>
@@ -175,15 +170,9 @@ const Approach = () => {
             <span className="text-[12.5px] text-white/45">As of September 2026</span>
           </div>
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-            {STATS.map((s, i) => (
-              <div
-                key={s.label}
-                style={{ transitionDelay: statsInView ? `${i * 90}ms` : '0ms' }}
-                className={`transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  statsInView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                }`}
-              >
-                <StatNumber value={s.value} prefix={s.prefix} suffix={s.suffix} active={statsInView} />
+            {STATS.map((s) => (
+              <div key={s.label} data-reveal>
+                <StatNumber value={s.value} prefix={s.prefix} suffix={s.suffix} active={statsActive} />
                 <div className="mt-3 text-[13.5px] text-white/65">{s.label}</div>
               </div>
             ))}
