@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 export default function useInView(threshold = 0.2) {
   const ref = useRef(null)
-  const [inView, setInView] = useState(false)
+  const [inView, setInView] = useState(prefersReducedMotion)
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true)
-      return
-    }
+    if (inView) return
 
     const node = ref.current
     if (!node) return
@@ -25,7 +25,7 @@ export default function useInView(threshold = 0.2) {
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, inView])
 
   return [ref, inView]
 }

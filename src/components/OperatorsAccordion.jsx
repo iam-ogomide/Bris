@@ -1,21 +1,18 @@
 import { useState } from 'react'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import { PlayIcon } from '../constants/icons'
 import { ITEMS } from '../constants/data'
 
 const OperatorsAccordion = () => {
-  const [headerRef, headerInView] = useInView(0.2)
-  const [accordionRef, accordionInView] = useInView(0.2)
+  const sectionRef = useScrollReveal({ childSelector: '[data-reveal]', y: 24, stagger: 0.15 })
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section className="bg-white px-6 pt-2.5 pb-20 min-[760px]:pt-5 min-[900px]:px-12 min-[900px]:pb-[120px]">
+    <section ref={sectionRef} className="bg-white px-6 pt-2.5 pb-20 min-[760px]:pt-5 min-[900px]:px-12 min-[900px]:pb-[120px]">
       <div className="mx-auto max-w-[1200px]">
         <div
-          ref={headerRef}
-          className={`mb-14 flex flex-col flex-wrap items-start justify-between gap-8 transition-all duration-700 min-[760px]:flex-row ${
-            headerInView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
+          data-reveal
+          className="mb-14 flex flex-col flex-wrap items-start justify-between gap-8 min-[760px]:flex-row"
         >
           <h2 className="text-[clamp(30px,3.6vw,42px)] leading-[1.2] font-medium tracking-[-0.01em] text-brand-950">
             Aligned. Flexible.
@@ -35,12 +32,7 @@ const OperatorsAccordion = () => {
           </div>
         </div>
 
-        <div
-          ref={accordionRef}
-          className={`flex flex-col transition-all delay-150 duration-700 ${
-            accordionInView ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-          }`}
-        >
+        <div data-reveal className="flex flex-col">
           {ITEMS.map((item, i) => {
             const active = i === activeIndex
             return (

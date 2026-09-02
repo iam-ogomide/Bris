@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import { CarouselChevronLeftIcon, CarouselChevronRightIcon } from '../constants/icons'
 import { CARDS } from '../constants/data'
 
@@ -30,8 +30,7 @@ const BrandCard = ({ card }) => (
 )
 
 const PortfolioCarousel = () => {
-  const [headerRef, headerInView] = useInView(0.15)
-  const [trackWrapRef, trackWrapInView] = useInView(0.15)
+  const sectionRef = useScrollReveal({ childSelector: '[data-reveal]', y: 28, stagger: 0.15 })
   const trackRef = useRef(null)
   const [thumb, setThumb] = useState({ width: 100, left: 0 })
   const [atStart, setAtStart] = useState(true)
@@ -91,14 +90,9 @@ const PortfolioCarousel = () => {
   }
 
   return (
-    <section className="overflow-hidden bg-white pt-2.5 pb-20 min-[760px]:pt-5 min-[900px]:pb-[120px]">
+    <section ref={sectionRef} className="overflow-hidden bg-white pt-2.5 pb-20 min-[760px]:pt-5 min-[900px]:pb-[120px]">
       <div className="mx-auto max-w-[1200px] px-6 min-[900px]:px-12">
-        <div
-          ref={headerRef}
-          className={`mb-12 flex flex-col flex-wrap items-start justify-between gap-8 transition-all duration-700 min-[760px]:flex-row ${
-            headerInView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
-        >
+        <div data-reveal className="mb-12 flex flex-col flex-wrap items-start justify-between gap-8 min-[760px]:flex-row">
           <h2 className="max-w-[480px] text-[clamp(28px,3.4vw,40px)] leading-[1.22] font-medium tracking-[-0.01em] text-brand-950">
             A Growing Portfolio of Enduring Partnerships
           </h2>
@@ -113,12 +107,7 @@ const PortfolioCarousel = () => {
           </div>
         </div>
 
-        <div
-          ref={trackWrapRef}
-          className={`relative transition-all delay-150 duration-700 ${
-            trackWrapInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}
-        >
+        <div data-reveal className="relative">
           <div
             ref={trackRef}
             onScroll={updateControls}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import { TimelineChevronLeftIcon, TimelineChevronRightIcon } from '../constants/icons'
 import { MILESTONES } from '../constants/data'
 
@@ -10,7 +10,7 @@ const navBtnClass =
   'flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-brand-mint/12 bg-[#0d211f] text-white/45 transition-all duration-250 hover:border-brand-mint/35 hover:bg-brand-mint/8 hover:text-brand-mint hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:border-brand-mint/12 disabled:hover:bg-[#0d211f] disabled:hover:text-white/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-mint focus-visible:outline-offset-2'
 
 const TimelineSection = () => {
-  const [sectionRef, inView] = useInView(0.2)
+  const sectionRef = useScrollReveal({ childSelector: '[data-reveal]', y: 24 })
   const [activeIndex, setActiveIndex] = useState(0)
   const [cardIndex, setCardIndex] = useState(0)
   const [cardSwapKey, setCardSwapKey] = useState(0)
@@ -113,11 +113,7 @@ const TimelineSection = () => {
         />
       </div>
 
-      <div
-        className={`relative z-[1] mx-auto max-w-[1200px] transition-all duration-700 ${
-          inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-        }`}
-      >
+      <div data-reveal className="relative z-[1] mx-auto max-w-[1200px]">
         <div className="relative mb-16">
           <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] text-brand-mint uppercase">
             <span

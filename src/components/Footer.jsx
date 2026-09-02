@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useInView from '../hooks/useInView'
+import { useScrollReveal } from '../constants/animations'
 import { ArrowUpRightIcon, ChevronUpIcon, BrandMarkIcon } from '../constants/icons'
 import { NAV_LINKS, ABOUT_ITEMS, SOCIALS } from '../constants/data'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
-  const [panelRef, panelInView] = useInView(0.1)
+  const panelRef = useScrollReveal({ childSelector: null, y: 24, start: 'top 90%' })
 
   const scrollToTop = (e) => {
     e.preventDefault()
@@ -17,9 +17,7 @@ const Footer = () => {
     <section className="bg-white px-4 pt-10 pb-14 min-[560px]:px-6">
       <footer
         ref={panelRef}
-        className={`mx-auto max-w-[1400px] rounded-[28px] bg-gray-50 px-8 pt-14 pb-8 transition-all duration-700 min-[560px]:px-14 min-[860px]:px-16 ${
-          panelInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-        }`}
+        className="mx-auto max-w-[1400px] rounded-[28px] bg-gray-50 px-8 pt-14 pb-8 min-[560px]:px-14 min-[860px]:px-16"
       >
         <div className="flex flex-wrap justify-between gap-10">
           <div className="max-w-[620px] min-w-[280px] flex-1">

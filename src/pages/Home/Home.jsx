@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import TrustedBy from '../../components/TrustedBy'
@@ -7,7 +7,7 @@ import OperatorsAccordion from '../../components/OperatorsAccordion'
 import PortfolioCarousel from '../../components/PortfolioCarousel'
 import TimelineSection from '../../components/TimelineSection'
 import Footer from '../../components/Footer'
-import useInView from '../../hooks/useInView'
+import { gsap, countTo, useScrollReveal, prefersReducedMotion } from '../../constants/animations'
 import heroBg from '../../assets/h7.jpg'
 import { ArrowUpRightIcon } from '../../constants/icons'
 import { NEWS_POSTS } from '../../constants/data'
@@ -21,27 +21,47 @@ const Arrow = () => (
 
 const Home = () => {
   const [statValue, setStatValue] = useState(0)
-  const [newsRef, newsInView] = useInView(0.15)
+  const newsRef = useScrollReveal({ start: 'top 85%' })
 
-  useEffect(() => {
-    let frame
-    const target = 2.4
-    const duration = 1200
-    const startTime = performance.now() + 1200
+  const statBadgeRef = useRef(null)
+  const headingLine1Ref = useRef(null)
+  const headingLine2Ref = useRef(null)
+  const paraRef = useRef(null)
+  const ctaRef = useRef(null)
+  const scrollIndicatorRef = useRef(null)
 
-    const tick = (now) => {
-      const elapsed = now - startTime
-      if (elapsed < 0) {
-        frame = requestAnimationFrame(tick)
-        return
-      }
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setStatValue(eased * target)
-      if (progress < 1) frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
+  useLayoutEffect(() => {
+    const reduced = prefersReducedMotion()
+    const counter = { value: 0 }
+    countTo(counter, {
+      value: 2.4,
+      duration: reduced ? 0 : 1.4,
+      delay: reduced ? 0 : 1.1,
+      onUpdate: () => setStatValue(counter.value),
+    })
+
+    if (reduced) return undefined
+
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({ defaults: { ease: 'power3.out' } })
+        .from(headingLine1Ref.current, { yPercent: 110, opacity: 0, duration: 0.9, ease: 'expo.out' }, '+=0.3')
+        .from(headingLine2Ref.current, { yPercent: 110, opacity: 0, duration: 0.9, ease: 'expo.out' }, '-=0.75')
+        .from(paraRef.current, { y: 16, opacity: 0, duration: 0.8 }, '-=0.55')
+        .from(ctaRef.current, { y: 16, opacity: 0, duration: 0.8 }, '-=0.55')
+        .from(statBadgeRef.current, { y: 10, scale: 0.97, opacity: 0, duration: 0.7 }, '-=0.5')
+        .from(scrollIndicatorRef.current, { opacity: 0, duration: 0.8 }, '-=0.4')
+
+      gsap.to(scrollIndicatorRef.current?.querySelector('[data-arrow]'), {
+        y: 5,
+        duration: 0.9,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+      })
+    })
+
+    return () => ctx.revert()
   }, [])
 
   return (
@@ -70,8 +90,9 @@ const Home = () => {
 
       {/* STAT BADGE */}
       <div
+        ref={statBadgeRef}
         className={
-          'relative z-[9] mx-[18px] mb-5 w-[calc(100%-36px)] rounded-[18px] border border-white/12 bg-[rgba(10,25,24,0.55)] px-[22px] py-[18px] text-left opacity-0 backdrop-blur-lg animate-[heroFadeInStat_0.8s_ease_forwards_1.1s] motion-reduce:animate-none motion-reduce:opacity-100 ' +
+          'relative z-[9] mx-[18px] mb-5 w-[calc(100%-36px)] rounded-[18px] border border-white/12 bg-[rgba(10,25,24,0.55)] px-[22px] py-[18px] text-left backdrop-blur-lg ' +
           'min-[520px]:absolute min-[520px]:right-6 min-[520px]:bottom-[180px] min-[520px]:mx-0 min-[520px]:mb-0 min-[520px]:w-auto min-[520px]:max-w-[260px] ' +
           'min-[900px]:right-12 min-[900px]:bottom-[210px] min-[900px]:px-[26px] min-[900px]:py-[22px]'
         }
@@ -86,23 +107,26 @@ const Home = () => {
       <div className="relative z-[8] flex flex-col px-[18px] pb-8 min-[520px]:px-6 min-[520px]:pb-10 min-[900px]:px-12 min-[900px]:pb-14">
         <h1 className="max-w-full text-[clamp(28px,8vw,40px)] leading-[1.08] font-semibold tracking-[-0.03em] min-[520px]:text-[clamp(30px,5.6vw,68px)] min-[640px]:max-w-[900px]">
           <span className="block overflow-hidden">
-            <span className="inline-block animate-[heroRiseIn_0.9s_cubic-bezier(0.19,1,0.22,1)_forwards] opacity-0 [animation-delay:0.35s] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span ref={headingLine1Ref} className="inline-block">
               Building Long-Term Value
             </span>
           </span>
           <span className="block overflow-hidden">
-            <span className="inline-block animate-[heroRiseIn_0.9s_cubic-bezier(0.19,1,0.22,1)_forwards] opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span ref={headingLine2Ref} className="inline-block">
               In Uncertain Markets
             </span>
           </span>
         </h1>
 
-        <p className="mt-[26px] max-w-full animate-[heroFadeUp_0.8s_ease_forwards_0.85s] text-[14.5px] leading-relaxed font-normal text-white/70 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 min-[520px]:max-w-[520px] min-[520px]:text-[15.5px]">
+        <p
+          ref={paraRef}
+          className="mt-[26px] max-w-full text-[14.5px] leading-relaxed font-normal text-white/70 min-[520px]:max-w-[520px] min-[520px]:text-[15.5px]"
+        >
           We invest with conviction, insight, and discipline — partnering with exceptional leaders to create
           lasting impact across evolving industries.
         </p>
 
-        <div className="mt-[34px] flex animate-[heroFadeUp_0.8s_ease_forwards_1.05s] flex-col gap-3.5 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 min-[520px]:flex-row min-[520px]:flex-wrap">
+        <div ref={ctaRef} className="mt-[34px] flex flex-col gap-3.5 min-[520px]:flex-row min-[520px]:flex-wrap">
           <Link
             to="/contact"
             className={`${btnBase} w-full justify-center bg-white px-[22px] py-3 text-[#0a1f1e] hover:shadow-[0_8px_24px_rgba(255,255,255,0.18)] min-[520px]:w-auto`}
@@ -118,9 +142,12 @@ const Home = () => {
       </div>
 
       {/* SCROLL INDICATOR */}
-      <div className="pointer-events-none absolute right-12 bottom-[52px] z-[9] hidden animate-[heroFadeUp_0.8s_ease_forwards_1.25s] items-center gap-2.5 text-[13px] font-medium text-white/55 opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 min-[640px]:flex">
+      <div
+        ref={scrollIndicatorRef}
+        className="pointer-events-none absolute right-12 bottom-[52px] z-[9] hidden items-center gap-2.5 text-[13px] font-medium text-white/55 min-[640px]:flex"
+      >
         Scroll to Explore
-        <span className="animate-[heroBounce_1.8s_ease-in-out_infinite] motion-reduce:animate-none">↓</span>
+        <span data-arrow>↓</span>
       </div>
       </section>
 
@@ -132,13 +159,8 @@ const Home = () => {
 
       {/* NEWS */}
       <section className="bg-white text-brand-950">
-        <div
-          ref={newsRef}
-          className={`mx-auto max-w-[1180px] px-6 py-[90px] transition-all duration-700 min-[900px]:px-12 ${
-            newsInView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
-        >
-          <div className="mb-9 flex flex-col items-start gap-4 min-[560px]:flex-row min-[560px]:items-center min-[560px]:justify-between">
+        <div ref={newsRef} className="mx-auto max-w-[1180px] px-6 py-[90px] min-[900px]:px-12">
+          <div data-reveal className="mb-9 flex flex-col items-start gap-4 min-[560px]:flex-row min-[560px]:items-center min-[560px]:justify-between">
             <h2 className="font-serif-display text-[clamp(30px,4.4vw,46px)] font-normal">
               News <i className="italic">&</i> Insights
             </h2>
@@ -153,7 +175,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="group/hero relative aspect-[16/7.2] w-full cursor-pointer overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+          <div data-reveal className="group/hero relative aspect-[16/7.2] w-full cursor-pointer overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
             <img
               src="https://picsum.photos/id/1015/1400/650"
               alt=""
@@ -174,13 +196,11 @@ const Home = () => {
           </div>
 
           <div className="mt-5 grid grid-cols-1 gap-5 min-[560px]:grid-cols-2 min-[900px]:grid-cols-4">
-            {NEWS_POSTS.map((post, i) => (
+            {NEWS_POSTS.map((post) => (
               <div
                 key={post.tag}
-                className={`group/card relative aspect-[3/3.6] cursor-pointer overflow-hidden rounded-[18px] transition-all duration-700 ${
-                  newsInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                }`}
-                style={{ transitionDelay: newsInView ? `${150 + i * 100}ms` : '0ms' }}
+                data-reveal
+                className="group/card relative aspect-[3/3.6] cursor-pointer overflow-hidden rounded-[18px]"
               >
                 <img
                   src={post.img}

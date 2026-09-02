@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../constants/animations'
 import { LOGOS } from '../constants/data'
 
 const LogoItem = ({ logo, hidden }) => (
@@ -11,9 +12,14 @@ const LogoItem = ({ logo, hidden }) => (
 )
 
 const TrustedBy = () => {
+  const sectionRef = useScrollReveal({ childSelector: '[data-reveal]', y: 16, duration: 0.7 })
+
   return (
-    <section className="bg-white px-6 pt-14 pb-9 text-center min-[900px]:px-12 min-[900px]:pt-[72px] min-[900px]:pb-12">
-      <div className="mb-9 text-[13px] font-medium tracking-[0.01em] text-gray-500">
+    <section
+      ref={sectionRef}
+      className="bg-white px-6 pt-14 pb-9 text-center min-[900px]:px-12 min-[900px]:pt-[72px] min-[900px]:pb-12"
+    >
+      <div data-reveal className="mb-9 text-[13px] font-medium tracking-[0.01em] text-gray-500">
         Trusted by 100+ Famous Companies
       </div>
 

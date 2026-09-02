@@ -49,7 +49,9 @@ const Navbar = () => {
   }, [aboutOpen])
 
   return (
-    <nav className="relative z-30 flex animate-[heroFadeDown_0.7s_ease_forwards] items-center justify-between gap-4 px-[18px] py-[18px] opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 min-[520px]:px-6 min-[520px]:py-[22px] min-[900px]:px-12 min-[900px]:py-7">
+    <nav
+      className="relative z-30 flex items-center justify-between gap-4 px-[18px] py-[18px] min-[520px]:px-6 min-[520px]:py-[22px] min-[900px]:px-12 min-[900px]:py-7"
+    >
       <Link to="/" className="flex shrink-0 items-center gap-2.5 text-lg font-bold tracking-[-0.02em] text-white min-[520px]:text-xl">
         <span className="inline-flex h-[26px] w-[26px] shrink-0 items-center justify-center">
           <BrandMarkIcon color="white" />
